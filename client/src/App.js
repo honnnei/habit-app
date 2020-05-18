@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react';
+import TrackingNew from './containers/TrackingNew';
+import TrackingExisting from './containers/TrackingExisting';
 
 class App extends React.Component {
   constructor(props) {
@@ -42,7 +45,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+        <Router>
+          <div className="App">
         <form onSubmit={this.createUser}>
           <h3>Sign Up!</h3>
         <label>Your Username:</label>
@@ -52,7 +56,7 @@ class App extends React.Component {
             value={this.state.newUsername}
             onChange={this.handleChange}
             ></input>
-        <button>Create User</button>
+        <Link to="/tracking-new-user">><button>Create User</button></Link>
         </form>
         <form onSubmit={this.logIn}>
         <h3>Log In:</h3>
@@ -63,9 +67,23 @@ class App extends React.Component {
             value={this.state.existingUsername}
             onChange={this.handleChange}
             ></input>
-        <button>Log In</button>
+        <Link to="/tracking-user"></Link><button>Log In</button>
         </form>
-      </div>
+        <Switch>
+            <Route 
+                path='/tracking-new-user'
+                exact 
+                render={(props) => <TrackingNew {...props} userName={this.state.newUsername} />} 
+            />
+            <Route
+                path='/tracking-user'
+                exact 
+                render={(props) => <TrackingExisting {...props} userName={this.state.existingUsername} />} 
+            />
+        </Switch>
+        </div>
+        </Router>
+      
     );
   }
    

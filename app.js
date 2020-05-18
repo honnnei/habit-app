@@ -1,14 +1,25 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;
-// const recipe = require('./routes/recipe');
+const habits = require('./routes/habits');
 const bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
-})); 
+}));
+const {MongoClient} = require("mongodb")
+const url = "mongodb://localhost"
 
-// app.use('/habits', recipe);
+MongoClient.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true}, (err, client) => {
+  if (err) {
+    return console.error(err)
+}
+
+})
+
+app.use('/habits', habits);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

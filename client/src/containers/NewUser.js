@@ -11,8 +11,7 @@ class NewUser extends React.Component {
 
   render() {
       return(
-        <div>
-            <div>
+        <div className="new-user">
               <h1>New Account</h1>
               <h3>USER SUCCESSFULLY CREATED</h3>
               <h2>Hello, {this.state.username}</h2>
@@ -20,9 +19,7 @@ class NewUser extends React.Component {
                 <div>
                   <Link to='/tracker'><button type='submit'>Yes</button></Link>
                   <Link to='/'><button type='submit'>No</button></Link>
-                </div>
-                
-            </div>  
+                </div> 
         </div>
       );
   }

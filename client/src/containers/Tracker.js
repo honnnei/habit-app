@@ -40,7 +40,7 @@ class Tracker extends React.Component {
     })
   }
 
-  getUserData = () => {
+  getUserHabits = () => {
     axios('/users/name/:id')
     .then(response => response.data)
     .then(array => {

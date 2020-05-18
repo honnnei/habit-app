@@ -7,7 +7,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
-const {MongoClient} = require("mongodb")
+/* const {MongoClient} = require("mongodb")
 const url = "mongodb://localhost"
 
 MongoClient.connect(url, {
@@ -16,14 +16,11 @@ MongoClient.connect(url, {
   if (err) {
     return console.error(err)
 }
-
-})
+  
+}) */
 
 app.use('/habits', habits);
 
-app.listen(port, () => {
-  console.log(`Listening on port: ${port}`);
-});
 
 app.get('/', function(req, res) {
     res.send('OK');
@@ -36,6 +33,11 @@ app.use(function(err, req, res, next) {
     error:  err
   });
 
+});
+
+
+app.listen(port, () => {
+  console.log(`Listening on port: ${port}`);
 });
 
 module.exports = app;

@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;
-const recipe = require('./routes/recipe');
+// const recipe = require('./routes/recipe');
 const bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-app.use('/habits', recipe);
+// app.use('/habits', recipe);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

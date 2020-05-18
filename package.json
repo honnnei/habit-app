@@ -1,0 +1,26 @@
+{
+  "name": "habit-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "server": "node app.js",
+    "client": "npm run start --prefix client",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honnnei/habit-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/honnnei/habit-app/issues"
+  },
+  "homepage": "https://github.com/honnnei/habit-app#readme",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.5.7"
+  }
+}

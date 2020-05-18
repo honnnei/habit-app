@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Form from './component/Form';
-import TrackingNew from './containers/TrackingNew';
-import TrackingExisting from './containers/TrackingExisting';
+import NewUser from './containers/NewUser';
+import Tracker from './containers/Tracker';
+import Habit from './component/Habit';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,32 +16,35 @@ class App extends React.Component {
 
   render() {
     return (
-          <div className="App">
+          <div className="Home">
             <Router>
-        <Switch>
-            <Route 
-                path='/'
-                exact 
-                component={Form}
-            />
-            <Route 
-                path='/tracking-new-user'
-                exact 
-                component={TrackingNew}
+              <Switch>
+                  <Route 
+                      path='/'
+                      exact 
+                      component={Form}
+                  />
+                  <Route 
+                      path='/newUser'
+                      exact 
+                      component={NewUser}
 
-            />
-            <Route
-                path='/tracking-user'
-                exact 
-                component={TrackingExisting}
-            />
-        </Switch>
-        </Router>
+                  />
+                  <Route
+                      path='/tracker'
+                      exact 
+                      component={Tracker}
+                  />
+                  <Route
+                      path='/habit/add'
+                      exact 
+                      component={Habit}
+                  />
+               </Switch>
+            </Router>
         </div>
-      
     );
   }
-   
 }
 
 export default App;

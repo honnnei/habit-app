@@ -19,4 +19,4 @@ class TrackingNew extends React.Component {
   }
 }
 
-  export default TrackingNew;
+export default TrackingNew;

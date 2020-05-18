@@ -19,4 +19,4 @@ class TrackingExisting extends React.Component {
   }
 }
 
-  export default TrackingExisting;
+export default TrackingExisting;

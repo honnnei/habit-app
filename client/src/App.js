@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import TrackingNew from './containers/TrackingNew';
 import TrackingExisting from './containers/TrackingExisting';
 
@@ -45,8 +45,8 @@ class App extends React.Component {
 
   render() {
     return (
-        <Router>
           <div className="App">
+            <Router>
         <form onSubmit={this.createUser}>
           <h3>Sign Up!</h3>
         <label>Your Username:</label>
@@ -81,8 +81,10 @@ class App extends React.Component {
                 render={(props) => <TrackingExisting {...props} userName={this.state.existingUsername} />} 
             />
         </Switch>
-        </div>
+        {/* <TrackingExisting />
+        <TrackingNew /> */}
         </Router>
+        </div>
       
     );
   }

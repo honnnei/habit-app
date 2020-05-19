@@ -7,7 +7,8 @@ class Tracker extends React.Component {
     super(props);
     this.state = ({
       userName: props.location.username,
-      userData: {}
+      userData: {},
+      trackingArray: []
     })
   }
 
@@ -29,9 +30,15 @@ class Tracker extends React.Component {
   }
 
   handleChange = (event) => {
+    //do we need this...?
       const {name, value, type, checked} = event.target
       // type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
       this.setState({ [name]: checked })
+      console.log(this.state)
+  }
+
+  chackHabit = () => {
+    //put request to push false or true to habit tracking array
   }
 
   mapHabitArray = () => {
@@ -46,8 +53,8 @@ class Tracker extends React.Component {
           id={index}
           type="checkbox"
           name={`${index}`}
-          checked={this.state.tracked}
-          onChange={this.handleChange}
+          checked={this.state.userData.habit[index].tracking[this.state.userData.habit[index].tracking - 1]}
+          onChange={this.checkHabit}
           ></input>
         </form>
         {`this.state.${index}` ? 'Habit Done!' : 'Habit NOT done :((('}

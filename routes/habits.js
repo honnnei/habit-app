@@ -38,14 +38,23 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
    
     //Add a new habit to a user**
     router.put('/add-habit/:username', (req, res) => {
-        console.log(req)
+        console.log(req.body)
       usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false)
       .then(
-          res.send("Posted something to the database")
+          res.send()
       )
       .catch(error => console.error(error))
     });
-    
+    //Update a new habit to a user - unfinished
+    router.put('/update-habit/:username/:habitName', (req, res) => {
+      console.log(req.body)
+    usersCollection.updateOne({"username": req.params.username, "habit.habitName":  req.params.habitName },
+    { $set: {"": ""}})
+    .then(
+        res.send("Posted something to the database")
+    )
+    .catch(error => console.error(error))
+    });
     //Delete a habit of a user*
     router.put('/delete-habit/:username', (req, res) => {
         usersCollection.updateOne({"username": req.params.username}, { $pull: { "habit" : { "name": req.body.habitName } } })

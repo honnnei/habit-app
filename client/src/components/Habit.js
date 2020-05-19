@@ -18,6 +18,13 @@ import { useState, useEffect } from 'react';
   const handleFrequency = e => {
     e.persist();
     setHabitFrequency(e.target.value);
+    // updateTrackingByFrequency();
+    // let array = ['one', 'two', 'three']
+   let array = [];
+    for ( let i = 0; i < e.target.value; i++ ) {
+      array.push(false);
+    }
+    setTrackingArray(array);
   }
 
   const createHabit = () => {
@@ -38,14 +45,14 @@ import { useState, useEffect } from 'react';
   const updateTrackingByFrequency = () => {
     // console.log(`handle change 4 ${this.state.habitFrequency}`)
     // console.log('this is update trackin');
-    let array = []
-    console.log(`this is habit fre from updatetracking: ${habitFrequency}`)
-    for (let i=0; i < habitFrequency; i++) {
-      array.push('we pushed it')
-    }
+    let array = ['one', 'two', 'three']
+    // console.log(`this is habit fre from updatetracking: ${habitFrequency}`)
+    // for (let i=0; i < habitFrequency; i++) {
+    //   array.push('we pushed it')
+    // }
     // console.log(array);
-    setTrackingArray(array);
-    console.log(trackingArray);
+    // setTrackingArray(array);
+    // console.log(trackingArray);
   }
 
 

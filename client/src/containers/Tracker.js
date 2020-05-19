@@ -8,7 +8,13 @@ class Tracker extends React.Component {
     this.state = ({
       userName: props.location.username,
       userData: {},
-      trackingArray: []
+      trackingArray: [],
+      habit_0: false,
+      habit_1: false,
+      habit_2: false,
+      habit_3: false,
+      habit_4: false,
+      habit_5: false,
     })
   }
 
@@ -30,6 +36,7 @@ class Tracker extends React.Component {
   }
 
   handleChange = (event) => {
+    event.preventDefault();
     //do we need this...?
       const {name, value, type, checked} = event.target
       // type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
@@ -37,8 +44,14 @@ class Tracker extends React.Component {
       console.log(this.state)
   }
 
-  chackHabit = () => {
+  checkHabit = (habitIndex) => {
     //put request to push false or true to habit tracking array
+    axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}`)
+    .then(response => console.log(response))
+    .catch(error => {
+      console.log("this is error", error.message);
+    });
+    console.log(`This is habit index:${habitIndex}`)
   }
 
   mapHabitArray = () => {
@@ -52,12 +65,14 @@ class Tracker extends React.Component {
           <input
           id={index}
           type="checkbox"
-          name={`${index}`}
-          checked={this.state.userData.habit[index].tracking[this.state.userData.habit[index].tracking - 1]}
-          onChange={this.checkHabit}
+          name={`habit_${index}`}
+          checked={`habit_${index}`}
+          onChange={(habitIndex) => {
+            this.checkHabit(index)
+          }}
           ></input>
         </form>
-        {`this.state.${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
+        {`this.state.habit_${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
         </div>
         
       )) 

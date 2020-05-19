@@ -44,6 +44,7 @@ in input:
 onChange={event => this.handleChange(event, index)}
 ```
 * A component is changing an uncontrolled input of type number to be controlled.
+* a 1 character / change delay in handleChange function --> hence we want to introduce React Hooks
 
 ## How we would develop our app further
 

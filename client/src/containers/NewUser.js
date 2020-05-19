@@ -9,6 +9,10 @@ class NewUser extends React.Component {
     })
   }
 
+  componentDidMount() {
+    this.createNewUSer();
+  }
+
   render() {
       return(
         <div className="new-user">

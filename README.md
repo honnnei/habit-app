@@ -16,6 +16,24 @@
 ## How we would develop our app further
 
 ### Stand Up Tue
+Steven:
+- MongoDB set up on Huseyin's machine
+- all routes work through Postman
+Huseyin:
+- creating basic routes
+* today we need to link them to the frontend 
+
+Hanna:
+* created basic frontend
+* tested frontend
+
+James:
+* 
+
+Plan for today:
+- create axios requests
+- post + get
+- put function
 
 ### Stand Up Wed
 

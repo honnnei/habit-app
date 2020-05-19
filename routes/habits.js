@@ -26,7 +26,6 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       .catch(error => console.error(error))
   });
 
-
   //Add a new user
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)

@@ -24,7 +24,7 @@ class Habit extends React.Component {
 
   render() {
       return (
-        <div>
+        <div className="habit-container">
             <form>
                 <h3>Create Habit</h3>
                 <label>Habit</label>

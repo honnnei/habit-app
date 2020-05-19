@@ -57,7 +57,7 @@ class Tracker extends React.Component {
 
   render() {
       return(
-        <div>
+        <div className="trackerDiv">
             <h1>{this.state.username}</h1>
             {this.state.userData.habit.map(habit => (
               <h1>{habit.name} is {habit.tracking[habit.tracking.length - 1] ? 'Done' : 'Not Done' }</h1> 

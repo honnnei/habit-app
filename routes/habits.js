@@ -9,7 +9,9 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     console.log('Connected to Database')
     const db = dbAPI.db("HabitTracker")
     const usersCollection = db.collection('users')
+
     //Get all**
+
     router.get('/all', (req, res) => {
         usersCollection.find().toArray()
         .then(results => {

@@ -9,7 +9,8 @@ class Habit extends React.Component {
       nameOfUser: props.location.username,
       habitName: "",
       frequency: 0,
-      tracking: []
+      tracking: [false]
+
       /* action: '' */
     })
   }

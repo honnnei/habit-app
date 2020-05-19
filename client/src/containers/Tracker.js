@@ -9,12 +9,7 @@ class Tracker extends React.Component {
       userName: props.location.username,
       userData: {},
       trackingArray: [],
-      habit_0: false,
-      habit_1: false,
-      habit_2: false,
-      habit_3: false,
-      habit_4: false,
-      habit_5: false,
+      do_we_need_this: false
     })
   }
 
@@ -26,50 +21,42 @@ class Tracker extends React.Component {
             userData: array,
             loading:false
           });
-      console.log(this.state.userData)
-      console.log(this.state.userData.habit)
-    })
+    });
+    
   }
 
   componentDidMount() {
   this.getUserHabits();
   }
 
-  handleChange = (event) => {
-    event.preventDefault();
-    //do we need this...?
-      const {name, value, type, checked} = event.target
-      // type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
-      this.setState({ [name]: checked })
-      console.log(this.state)
-  }
-
-  checkHabit = (habitIndex) => {
-    //put request to push false or true to habit tracking array
+  handleChange = (event, habitIndex) => {
+      // event.preventDefault();
+      // const {name, value, type, checked} = event.target
+      // this.setState({ [name]: checked })
     axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}`)
     .then(response => console.log(response))
     .catch(error => {
       console.log("this is error", error.message);
     });
-    console.log(`This is habit index:${habitIndex}`)
+    this.getUserHabits();
   }
+ 
 
   mapHabitArray = () => {
     let habitArray = []
     if (this.state.userData.habit) {
       habitArray = this.state.userData.habit.map((habit, index) => (
         <div>
+          {/* <h3>tracking array is{JSON.stringify(habit.tracking.length)}</h3> */}
         <h1>{habit.habitName}</h1>
         <h1>{index}</h1>
         <form>
           <input
           id={index}
           type="checkbox"
-          name={`habit_${index}`}
-          checked={`habit_${index}`}
-          onChange={(habitIndex) => {
-            this.checkHabit(index)
-          }}
+          name={this.state.do_we_need_this}
+          checked={habit.tracking[habit.tracking.length - 1]}
+          onChange={event => this.handleChange(event, index)}
           ></input>
         </form>
         {`this.state.habit_${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
@@ -81,7 +68,7 @@ class Tracker extends React.Component {
   }
   
   render() {
-    console.log(this.state.tracked)
+    console.log(this.state)
       return(
         <div className="trackerDiv">
             <h1>{this.state.userName}</h1>

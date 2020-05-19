@@ -7,8 +7,7 @@ class Tracker extends React.Component {
     super(props);
     this.state = ({
       userName: props.location.username,
-      userData: {},
-      tracked: false
+      userData: {}
     })
   }
 
@@ -46,12 +45,12 @@ class Tracker extends React.Component {
           <input
           id={index}
           type="checkbox"
-          name="tracked"
+          name={`${index}`}
           checked={this.state.tracked}
           onChange={this.handleChange}
           ></input>
         </form>
-        {this.state.tracked ? 'Habit Done!' : 'Habit NOT done :((('}
+        {`this.state.${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
         </div>
         
       )) 

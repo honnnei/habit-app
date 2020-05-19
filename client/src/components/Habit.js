@@ -6,31 +6,35 @@ class Habit extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      nameOfUser: "Huseyin",
-      habitName: '',
-      frequency: null,
+      nameOfUser: props.location.username,
+      habitName: "",
+      frequency: 0,
       tracking: []
       /* action: '' */
     })
-    this.handleChange = this.handleChange.bind(this);
-    this.createHabit = this.createHabit.bind(this);
   }
 
-  createHabit(){
-    axios.put(`habits/add-habit/${this.state.nameOfUser}`,{
-              habitName:this.state.habitName,
-              frequency: this.state.frequency,
-              date: new Date().toISOString().split('T')[0],
-              tracking: this.state.tracking
+  createHabit = () => {
+    console.log(this.state.nameOfUser);
+    if (this.state.nameOfUser) {
+      axios.put(`habits/add-habit/${this.state.nameOfUser}`, {
+        habitName: this.state.habitName,
+        frequency: this.state.frequency,
+        date: new Date().toISOString().split('T')[0],
+        tracking: this.state.tracking
+      })
+      .then(response => console.log(response))
+      .catch(error => {
+        console.log("this is error", error.message);
+      });
     }
-          )
   }
 
   handleChange = (event) => {
     event.preventDefault();
     const {name, value} = event.target
     this.setState({ [name]: value })
-}
+  }
 
 
   render() {
@@ -63,7 +67,7 @@ class Habit extends React.Component {
                     ></input> */}
             </form>
             <div>
-              <Link to='/tracker' onClick={this.createHabit}>Add</Link>
+              <Link to={{pathname:'/tracker', username: this.state.nameOfUser}}><button onClick={this.createHabit}>Add</button></Link>
             </div>
           </div>  
       );

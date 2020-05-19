@@ -5,15 +5,61 @@ import { useState, useEffect } from 'react';
 
 
 // class Habit extends React.Component {
-  const Habit = () => {
-  const [ Frequency, setFrequency ] = useState("");
-  const onChange = e => {
+  const Habit = (props) => {
+  const [ habitFrequency, setHabitFrequency ] = useState(0);
+  const [ habitName, setHabitName ] = useState("");
+  const [ trackingArray, setTrackingArray ] = useState([]);
+
+  const handleName = e => {
     e.persist();
-    setFrequency(e.target.value);
+    setHabitName(e.target.value);
   };
+
+  const handleFrequency = e => {
+    e.persist();
+    setHabitFrequency(e.target.value);
+  }
+
+  const createHabit = () => {
+    if (props.location.username) {
+      axios.put(`habits/add-habit/${props.location.username}`, {
+        habitName: habitName,
+        frequency: habitFrequency,
+        date: new Date().toISOString().split('T')[0],
+        tracking: trackingArray
+      })
+      .then(response => console.log(response))
+      .catch(error => {
+        console.log("this is error", error.message);
+      });
+    }
+  }
+
+  const updateTrackingByFrequency = () => {
+    // console.log(`handle change 4 ${this.state.habitFrequency}`)
+    // console.log('this is update trackin');
+    let array = []
+    console.log(`this is habit fre from updatetracking: ${habitFrequency}`)
+    for (let i=0; i < habitFrequency; i++) {
+      array.push('we pushed it')
+    }
+    // console.log(array);
+    setTrackingArray(array);
+    console.log(trackingArray);
+  }
+
+
   useEffect(() => {
-    console.log("Search message inside useEffect: ", Frequency);
-  }, [Frequency]);
+    console.log("this is habit freaquency: ", habitFrequency);
+  }, [habitFrequency]);
+
+  useEffect(() => {
+    console.log("this is habit name: ", habitName);
+  }, [habitName]);
+
+  // useEffect(() => {
+  //   updateTrackingByFrequency();
+  // }, [habitFrequency]);
 
   // constructor(props) {
   //   super(props);
@@ -26,6 +72,8 @@ import { useState, useEffect } from 'react';
   //     /* action: '' */
   //   })
   // }
+
+  // const [ nameOfUser, setNameOfUSer ] = useState
 
   // createHabit = () => {
   //   console.log(this.state.nameOfUser);
@@ -43,6 +91,8 @@ import { useState, useEffect } from 'react';
   //   }
   // }
 
+  
+
   // updateTrackingByFrequency = () => {
   //   console.log(`handle change 4 ${this.state.frequency}`)
   //   console.log('this is update trackin');
@@ -55,6 +105,8 @@ import { useState, useEffect } from 'react';
   //     trackingArray: array
   //   })
   // }
+
+ 
 
   // handleChange = (event) => {
   //   console.log(`handle change 1 ${this.state.frequency}`)
@@ -75,20 +127,20 @@ import { useState, useEffect } from 'react';
             <form>
                 <h3>Create Habit</h3>
                 <label htmlFor="habitName">What habit would you like to track?</label>
-                    {/* <input
+                    <input
                     id="habitName" 
                     name="habitName" 
                     type="text"
-                    value={this.state.habitName}
-                    onChange={this.handleChange}
-                    ></input> */}
+                    value={habitName}
+                    onChange={handleName}
+                    ></input>
                 <label htmlFor="frequency">How many times per day are you looking to do this?</label>
                 <input
                     id="rrequency" 
-                    name="Frequency" 
+                    name="habitFrequency" 
                     type="number"
-                    value={Frequency}
-                    onChange={onChange}
+                    value={habitFrequency}
+                    onChange={handleFrequency}
                     ></input>
                   {/* <label>Action</label>
                     <input 
@@ -99,7 +151,7 @@ import { useState, useEffect } from 'react';
                     ></input> */}
             </form>
             <div>
-              {/* <Link to={{pathname:'/tracker', username: this.state.nameOfUser}}><button onClick={this.createHabit}>Add</button></Link> */}
+              <Link to={{pathname:'/tracker', username: props.location.username}}><button onClick={createHabit}>Add</button></Link>
             </div>
           </div>  
       );

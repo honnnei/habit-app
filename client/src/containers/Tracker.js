@@ -10,7 +10,7 @@ class Tracker extends React.Component {
       userData: null
     })
   }
-  
+
   getUserHabits = () => {
     axios(`/habits/${this.state.username}`)
     .then(response => response.data)
@@ -22,10 +22,11 @@ class Tracker extends React.Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
   this.getUserHabits();
   }
 
+  
   render() {
       return(
         <div className="trackerDiv">

@@ -7,7 +7,8 @@ class Tracker extends React.Component {
     super(props);
     this.state = ({
       userName: props.location.username,
-      userData: {}
+      userData: {},
+      tracked: false
     })
   }
 
@@ -28,22 +29,43 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
-  
-  render() {
+  handleChange = (event) => {
+      const {name, value, type, checked} = event.target
+      // type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
+      this.setState({ [name]: checked })
+  }
 
+  mapHabitArray = () => {
     let habitArray = []
     if (this.state.userData.habit) {
-      habitArray = this.state.userData.habit.map(habit => (
-        <h1>{habit.habitName}</h1> 
+      habitArray = this.state.userData.habit.map((habit, index) => (
+        <div>
+        <h1>{habit.habitName}</h1>
+        <h1>{index}</h1>
+        <form>
+          <input
+          id={index}
+          type="checkbox"
+          name="tracked"
+          checked={this.state.tracked}
+          onChange={this.handleChange}
+          ></input>
+        </form>
+        {this.state.tracked ? 'Habit Done!' : 'Habit NOT done :((('}
+        </div>
+        
       )) 
     }
-    // {habit.tracking[habit.tracking.length - 1] ? 'Done' : 'Not Done' 
-    console.log(this.state.userData.habit)
+    return habitArray;
+  }
+  
+  render() {
+    console.log(this.state.tracked)
       return(
         <div className="trackerDiv">
             <h1>{this.state.userName}</h1>
-           {habitArray}
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>
+            {this.mapHabitArray()}
         </div>
       );
   }

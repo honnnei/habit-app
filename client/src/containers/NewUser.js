@@ -1,20 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 class NewUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      username: props.location.username
+      userName: props.location.username
     })
   }
+
+createUser = () => {
+  Axios.post('/habits/add-user', {
+    username : this.state.userName
+  }).then(response => console.log(response))
+  .catch(error => {
+    console.log("this is error", error.message);
+  });
+
+}
+
+componentDidMount(){
+  this.createUser();
+}
 
   render() {
       return(
         <div className="new-user">
               <h1>New Account</h1>
               <h3>USER SUCCESSFULLY CREATED</h3>
-              <h2>Hello, {this.state.username}</h2>
+              <h2>Hello, {this.state.userName}</h2>
               <p>Are you ready to track your Habits? </p>
                 <div>
                   <Link to='/tracker'><button type='submit'>Yes</button></Link>

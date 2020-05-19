@@ -27,13 +27,19 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         res.send(result.habit)
       })
     });
-    //Add a new user**
+    //Add a new user - works sends data to datab
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)
-        .then(
-            res.send("Posted something to the database")
-        )
-        .catch(error => console.error(error))
+        .then(usersCollection.findOne({"username": {$eq:req.params.username}}))
+        .then(function(show) {
+          res.json(show);
+        })
+        .then(result => {
+          res.send(result)
+        })
+        .catch(function(error) {
+          next(error);
+        });
     });
    
     //Add a new habit to a user**

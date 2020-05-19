@@ -9,7 +9,9 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     console.log('Connected to Database')
     const db = dbAPI.db("HabitTracker")
     const usersCollection = db.collection('users')
-    
+
+    //Get all**
+
     router.get('/all', (req, res) => {
         usersCollection.find().toArray()
         .then(results => {
@@ -17,17 +19,15 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
           })
         .catch(error => console.error(error))
     });
-    //get single User habits
+    
+    //Get a single user's habits** -error handling on case sensitivity
     router.get('/:username', (req, res) => {
-      usersCollection.find().toArray()
-      .then(results => {
-          res.send(results)
-        })
-      .catch(error => console.error(error))
-  });
-
-
-  //Add a new user
+      usersCollection.findOne({"username": {$eq:req.params.username}})
+      .then(result => {
+        res.send(result.habit)
+      })
+    });
+    //Add a new user**
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)
         .then(
@@ -36,25 +36,28 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         .catch(error => console.error(error))
     });
    
-    //Add a new habit to a user
+    //Add a new habit to a user**
     router.put('/add-habit/:username', (req, res) => {
-      usersCollection.insertOne(req.body)
+        console.log(req)
+      usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false)
       .then(
           res.send("Posted something to the database")
       )
       .catch(error => console.error(error))
     });
-//Delete a habit of a user
+    
+    //Delete a habit of a user*
     router.put('/delete-habit/:username', (req, res) => {
-        usersCollection.deleteOne({"id": req.params.id})
+        usersCollection.updateOne({"username": req.params.username}, { $pull: { "habit" : { "name": req.body.habitName } } })
         .then(
             res.send("Deleted something to the database")
         )
         .catch(error => console.error(error))
     });
-    //Delete a user
+    
+    //Delete a user*
       router.delete('/delete-user/:username', (req, res) => {
-        usersCollection.deleteOne({"id": req.params.id})
+        usersCollection.deleteOne({"username": {$eq: req.params.username}})
         .then(
             res.send("Deleted something to the database")
         )

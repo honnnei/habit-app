@@ -7,41 +7,12 @@ class Tracker extends React.Component {
     super(props);
     this.state = ({
       username: props.location.username,
-      userData: {
-        "id": 1,
-        "name": "Steven",
-        "habit": [
-          {
-            "id": 0,
-            "name": "Water",
-            "date": "2020-05-18",
-            "frequency": 1,
-            "tracking": [
-              false,
-              true,
-              false,
-              true
-            ]
-          },
-          {
-            "id": 1,
-            "name": "Exercise",
-            "date": "2020-05-18",
-            "frequency": 1,
-            "tracking": [
-              false,
-              true,
-              false,
-              true
-            ]
-          }
-        ]
-      }
+      userData: null
     })
   }
 
   getUserHabits = () => {
-    axios('/users/name/:id')
+    axios(`/habits/${this.state.username}`)
     .then(response => response.data)
     .then(array => {
       this.setState({
@@ -51,17 +22,18 @@ class Tracker extends React.Component {
     })
   }
 
-  componentDidMount(){
-  
+  componentDidMount() {
+  this.getUserHabits();
   }
 
+  
   render() {
       return(
         <div className="trackerDiv">
             <h1>{this.state.username}</h1>
-            {this.state.userData.habit.map(habit => (
+            {/* {this.state.userData.habit.map(habit => (
               <h1>{habit.name} is {habit.tracking[habit.tracking.length - 1] ? 'Done' : 'Not Done' }</h1> 
-            ))}
+            ))} */}
             <Link to='/habit/add'>Create Habit</Link>
         </div>
       );

@@ -16,6 +16,19 @@ class Form extends React.Component {
     this.setState({ [name]: value })
   }
   
+  validateNewUser = (event) =>{
+    if(!this.state.newUsername){
+      event.preventDefault();
+      alert('Please enter valid Username')
+    }
+  }
+
+  validateExistingUser = (event) =>{
+    if(!this.state.existingUsername){
+      event.preventDefault();
+      alert('Please enter valid Username')
+    }
+  }
 
   render() {
     return (
@@ -31,7 +44,7 @@ class Form extends React.Component {
                     onChange={this.handleChange}
                     ></input>
             </form>
-            <Link to={{pathname:'/newUser', username : this.state.newUsername}}><button type='submit'>Create User</button></Link>
+            <Link to={{pathname:'/newUser', username : this.state.newUsername}}><button type='submit' onClick={this.validateNewUser}>Create User</button></Link>
             </div>
 
             <div>
@@ -45,7 +58,7 @@ class Form extends React.Component {
                     onChange={this.handleChange}
                     ></input>
                 </form>
-                <Link to={{pathname:'/tracker', username : this.state.existingUsername}}><button type='submit'>Log In</button></Link>
+                <Link to={{pathname:'/tracker', username : this.state.existingUsername}}><button type='submit' onClick={this.validateExistingUser}>Log In</button></Link>
             </div>
         </div>  
       

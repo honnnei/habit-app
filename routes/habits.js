@@ -22,6 +22,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     
     //Get a single user's habits** -error handling on case sensitivity
     router.get('/:username', (req, res) => {
+<<<<<<< HEAD
       usersCollection.find().toArray()
       .then(results => {
           res.send(results)
@@ -36,12 +37,26 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
 //       })
 //     });
  //Add a new user**
+=======
+      usersCollection.findOne({"username": {$eq:req.params.username}})
+      .then(result => {
+        res.send(result)
+      })
+    });
+    //Add a new user - works sends data to datab
+>>>>>>> 1620c63f11d5585bffb346d80632aa56cc5acd96
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)
-        .then(
-            res.send("Posted something to the database")
-        )
-        .catch(error => console.error(error))
+        .then(usersCollection.findOne({"username": {$eq:req.params.username}}))
+        .then(function(show) {
+          res.json(show);
+        })
+        .then(result => {
+          res.send(result)
+        })
+        .catch(function(error) {
+          next(error);
+        });
     });
    
     //Add a new habit to a user**

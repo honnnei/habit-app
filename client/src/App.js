@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Form from './components/Form';
+import NewUser from './containers/NewUser';
+import Tracker from './containers/Tracker';
+import Habit from './components/Habit';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      newUsername: "",
+      existingUsername: ""
+    })
+  }
+
+  render() {
+    return (
+          <div className="Home">
+            <Router>
+              <Switch>
+                  <Route 
+                      path='/'
+                      exact 
+                      component={Form}
+                  />
+                  <Route 
+                      path='/newUser'
+                      exact 
+                      component={NewUser}
+
+                  />
+                  <Route
+                      path='/tracker'
+                      exact 
+                      component={Tracker}
+                  />
+                  <Route
+                      path='/habit/add'
+                      exact 
+                      component={Habit}
+                  />
+               </Switch>
+            </Router>
+        </div>
+    );
+  }
 }
 
 export default App;

@@ -20,18 +20,8 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         .catch(error => console.error(error))
     });
     
-    //Get a single user's habits** -error handling on case sensitivity
+    //Get a single user's habits** - error handling on case sensitivity
     router.get('/:username', (req, res) => {
-
-
-  //Add a new user
-//       usersCollection.findOne({"username": {$eq:req.params.username}})
-//       .then(result => {
-//         res.send(result.habit)
-//       })
-//     });
- //Add a new user**
-
       usersCollection.findOne({"username": {$eq:req.params.username}})
       .then(result => {
         res.send(result)
@@ -42,8 +32,8 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)
         .then(usersCollection.findOne({"username": {$eq:req.params.username}}))
-        .then(function(show) {
-          res.json(show);
+        .then(function(result) {
+          res.json(result);
         })
         .then(result => {
           res.send(result)
@@ -63,7 +53,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       .catch(error => console.error(error))
     });
     //Update a new habit to a user - unfinished
-    router.put('/update-habit/:username/:habitName', (req, res) => {
+/*     router.put('/update-habit/:username/:habitName', (req, res) => {
       console.log(req.body)
     usersCollection.updateOne({"username": req.params.username, "habit.habitName":  req.params.habitName },
     { $set: {"": ""}})
@@ -71,7 +61,18 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         res.send("Posted something to the database")
     )
     .catch(error => console.error(error))
-    });
+    }); */
+
+    // tracking route - Done?
+    router.put('/update-habit/:username/:habitID', (req, res) => {
+      usersCollection.updateOne({ "username": req.params.username },
+      {$push: { [`habit.${req.params.habitID}.tracking`] : true}}, true,false)
+      .then(
+          res.send("Tracking updated")
+      )
+      .catch(error => console.error(error))
+      });
+
     //Delete a habit of a user*
     router.put('/delete-habit/:username', (req, res) => {
         usersCollection.updateOne({"username": req.params.username}, { $pull: { "habit" : { "name": req.body.habitName } } })

@@ -9,7 +9,7 @@ class Habit extends React.Component {
       nameOfUser: "Huseyin",
       habitName: '',
       frequency: null,
-      tracking: []
+      tracking: [false]
       /* action: '' */
     })
     this.handleChange = this.handleChange.bind(this);

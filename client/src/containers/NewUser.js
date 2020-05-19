@@ -32,7 +32,7 @@ componentDidMount(){
               <h2>Hello, {this.state.userName}</h2>
               <p>Are you ready to track your Habits? </p>
                 <div>
-                  <Link to='/tracker'><button type='submit'>Yes</button></Link>
+                  <Link to={{pathname:'/tracker', username:this.state.userName}}><button type='submit' >Yes</button></Link>
                   <Link to='/'><button type='submit'>No</button></Link>
                 </div> 
         </div>

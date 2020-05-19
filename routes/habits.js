@@ -24,7 +24,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     router.get('/:username', (req, res) => {
       usersCollection.findOne({"username": {$eq:req.params.username}})
       .then(result => {
-        res.send(result.habit)
+        res.send(result)
       })
     });
     //Add a new user - works sends data to datab

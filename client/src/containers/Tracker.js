@@ -76,6 +76,23 @@ class Tracker extends React.Component {
   mapHabitArray = () => {
     let habitArray = []
     let trackArray = []
+
+   function habitProgressBar(habitFrequency, trackArray) {
+      let habitProgress = 0;
+      habitProgress = Math.floor((trackArray.filter(Boolean).length / habitFrequency) * 100);
+      // let maximumTrackNumber = 0;
+    // let dailyProgress = 0;
+    // let dailyProgressPercentage = 0;
+    //   if (trackArray) {
+    //       for ( let i = 0; i < trackArray.length; i++ ) {
+    //         // maximumTrackNumber += this.state.userData.habit[i].tracking.length;
+    //         dailyProgress += ;
+    //       }
+    //       dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
+    //       console.log('Daily progress is:' + dailyProgressPercentage + '%');
+      console.log(habitFrequency, trackArray, habitProgress);
+      return habitProgress;
+    }
   
     if (this.state.userData.habit) {
       
@@ -83,7 +100,9 @@ class Tracker extends React.Component {
       
       habitArray = this.state.userData.habit.map((habit, habitIndex) => (
         <div>
+
         <h1>{habit.habitName}</h1>
+        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
         <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
         
         {trackArray = habit.tracking.map((trackValue, trackIndex) => (
@@ -100,9 +119,8 @@ class Tracker extends React.Component {
             </form>
           </div>
         ))}
-        <div className="habit-tracking-array">
         </div>
-        </div>
+        
       )) 
     }
     return habitArray;
@@ -111,14 +129,13 @@ class Tracker extends React.Component {
   
   render() {
     this.progressBar();
-    console.log(this.progressBar());
-    console.log(this.state)
+  
       return(
         <React.Fragment>
         {
         this.state.userName ?
         <div className="trackerDiv">
-          <ProgressBar now={this.progressBar()} />
+          <ProgressBar now={this.progressBar()} label={this.progressBar()} variant="success" />
           <h1>{this.state.progress}</h1>
             <h1>{this.state.userName}</h1>
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>

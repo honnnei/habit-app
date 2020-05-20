@@ -1,19 +1,46 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+
+
+// const ModalExample = (props) => {
+//   const {
+//     buttonLabel,
+//     className
+//   } = props;
+
+//   const [modal, setModal] = useState(false);
+
+//   const toggle = () => setModal(!modal);
+
+//   return (
+//     <div>
+//       <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+//       <Modal isOpen={modal} toggle={toggle} className={className}>
+//         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+//         <ModalBody>
+//           Hi there
+//         </ModalBody>
+//         <ModalFooter>
+//           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+//           <Button color="secondary" onClick={toggle}>Cancel</Button>
+//         </ModalFooter>
+//       </Modal>
+//     </div>
+//   );
+// }
+
+
 
 
 const Tracker = (props) => {
   const [userName, setUserName] = useState("");
   const [userData, setUserData] = useState();
   const [progress, setProgress] = useState(0);
-
 
   const getUserHabits = () => {
     axios(`/habits/${userName}`)
@@ -107,6 +134,7 @@ const Tracker = (props) => {
         <h1> {userName}</h1>
         <Link to={{pathname: '/habit/add', username: userName}}>Create Habit</Link> 
         {mapHabitArray()}
+        <ModalExample />
       </div>
       :
         <div>

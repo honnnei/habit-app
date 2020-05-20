@@ -9,7 +9,8 @@ class Tracker extends React.Component {
       userName: props.location.username,
       userData: {},
       trackingArray: [],
-      do_we_need_this: false
+      do_we_need_this: false,
+      progress: 0
     })
   }
 
@@ -29,6 +30,10 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
+  // componentDidUpdate() {
+  // this.progressBar();
+  // }
+
   handleChange = (event, habitIndex, trackIndex, trackValue) => {
       // event.preventDefault();
       // const {name, value, type, checked} = event.target
@@ -45,12 +50,36 @@ class Tracker extends React.Component {
     });
     this.getUserHabits();
   }
+
+  progressBar = () => {
+    console.log('progress bar');
+    let maximumTrackNumber;
+    let dailyProgress;
+    let dailyProgressPercentage;
+      if (this.state.userData.habit) {
+          for ( let i = 0; i < this.state.userData.habit.length; i++ ) {
+            maximumTrackNumber += this.state.userData.habit[i].tracking.length;
+            dailyProgress += this.state.userData.habit[i].tracking.filter(Boolean).length;
+          }
+          dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
+          console.log('Daily progress is:' + dailyProgressPercentage + '%');
+            
+            this.setState({
+              progress: dailyProgressPercentage
+            });
+          }
+    return dailyProgressPercentage;
+  }
  
 
   mapHabitArray = () => {
     let habitArray = []
     let trackArray = []
+  
     if (this.state.userData.habit) {
+      
+
+      
       habitArray = this.state.userData.habit.map((habit, habitIndex) => (
         <div>
         <h1>{habit.habitName}</h1>
@@ -80,12 +109,15 @@ class Tracker extends React.Component {
   }
   
   render() {
+    this.progressBar();
+    console.log(this.progressBar());
     console.log(this.state)
       return(
         <React.Fragment>
         {
         this.state.userName ?
         <div className="trackerDiv">
+          <h1>{this.state.progress}</h1>
             <h1>{this.state.userName}</h1>
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>
             {this.mapHabitArray()}

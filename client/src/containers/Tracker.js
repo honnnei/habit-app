@@ -53,9 +53,9 @@ class Tracker extends React.Component {
 
   progressBar = () => {
     console.log('progress bar');
-    let maximumTrackNumber;
-    let dailyProgress;
-    let dailyProgressPercentage;
+    let maximumTrackNumber = 0;
+    let dailyProgress = 0;
+    let dailyProgressPercentage = 0;
       if (this.state.userData.habit) {
           for ( let i = 0; i < this.state.userData.habit.length; i++ ) {
             maximumTrackNumber += this.state.userData.habit[i].tracking.length;
@@ -64,9 +64,9 @@ class Tracker extends React.Component {
           dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
           console.log('Daily progress is:' + dailyProgressPercentage + '%');
             
-            this.setState({
-              progress: dailyProgressPercentage
-            });
+            // this.setState({
+            //   progress: dailyProgressPercentage
+            // });
           }
     return dailyProgressPercentage;
   }

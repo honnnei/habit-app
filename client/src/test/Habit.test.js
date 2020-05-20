@@ -21,9 +21,9 @@ describe('Habit', () => {
     expect(wrapper.find('.habit-container')).toBeTruthy();
   });
 
-// //   test('contains Routes', () => {
-// //     expect(wrapper.containsMatchingElement(<Link />)).toEqual(true);
-// //   });
+  // test('contains Routes', () => {
+  //   expect(wrapper.containsMatchingElement(<Link />)).toEqual(true);
+  // });
 
 // //   test('contains Routes', () => {
 // //     expect(wrapper.find('input')).prop('to').toEqual('/tracker');

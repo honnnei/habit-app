@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 class Tracker extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Tracker extends React.Component {
       userName: props.location.username,
       userData: {},
       trackingArray: [],
-      do_we_need_this: false
+      do_we_need_this: false,
+      progress: 0
     })
   }
 
@@ -29,6 +31,10 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
+  // componentDidUpdate() {
+  // this.progressBar();
+  // }
+
   handleChange = (event, habitIndex, trackIndex, trackValue) => {
       // event.preventDefault();
       // const {name, value, type, checked} = event.target
@@ -45,15 +51,58 @@ class Tracker extends React.Component {
     });
     this.getUserHabits();
   }
+
+  progressBar = () => {
+    console.log('progress bar');
+    let maximumTrackNumber = 0;
+    let dailyProgress = 0;
+    let dailyProgressPercentage = 0;
+      if (this.state.userData.habit) {
+          for ( let i = 0; i < this.state.userData.habit.length; i++ ) {
+            maximumTrackNumber += this.state.userData.habit[i].tracking.length;
+            dailyProgress += this.state.userData.habit[i].tracking.filter(Boolean).length;
+          }
+          dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
+          console.log('Daily progress is:' + dailyProgressPercentage + '%');
+            
+            // this.setState({
+            //   progress: dailyProgressPercentage
+            // });
+          }
+    return dailyProgressPercentage;
+  }
  
 
   mapHabitArray = () => {
     let habitArray = []
     let trackArray = []
+
+   function habitProgressBar(habitFrequency, trackArray) {
+      let habitProgress = 0;
+      habitProgress = Math.floor((trackArray.filter(Boolean).length / habitFrequency) * 100);
+      // let maximumTrackNumber = 0;
+    // let dailyProgress = 0;
+    // let dailyProgressPercentage = 0;
+    //   if (trackArray) {
+    //       for ( let i = 0; i < trackArray.length; i++ ) {
+    //         // maximumTrackNumber += this.state.userData.habit[i].tracking.length;
+    //         dailyProgress += ;
+    //       }
+    //       dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
+    //       console.log('Daily progress is:' + dailyProgressPercentage + '%');
+      console.log(habitFrequency, trackArray, habitProgress);
+      return habitProgress;
+    }
+  
     if (this.state.userData.habit) {
+      
+
+      
       habitArray = this.state.userData.habit.map((habit, habitIndex) => (
         <div>
+
         <h1>{habit.habitName}</h1>
+        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
         <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
         
         {trackArray = habit.tracking.map((trackValue, trackIndex) => (
@@ -70,9 +119,8 @@ class Tracker extends React.Component {
             </form>
           </div>
         ))}
-        <div className="habit-tracking-array">
         </div>
-        </div>
+        
       )) 
     }
     return habitArray;
@@ -80,12 +128,15 @@ class Tracker extends React.Component {
   }
   
   render() {
-    console.log(this.state)
+    this.progressBar();
+  
       return(
         <React.Fragment>
         {
         this.state.userName ?
         <div className="trackerDiv">
+          <ProgressBar now={this.progressBar()} label={this.progressBar()} variant="success" />
+          <h1>{this.state.progress}</h1>
             <h1>{this.state.userName}</h1>
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>
             {this.mapHabitArray()}

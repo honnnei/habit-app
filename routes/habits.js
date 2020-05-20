@@ -23,7 +23,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     router.get('/:username', (req, res) => {
       usersCollection.findOne({"username": {$eq:req.params.username}})
       .then(result => {
-        res.send(result.habit)
+        res.send(result)
       })
     });
     
@@ -48,6 +48,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       )
       .catch(error => console.error(error))
     });
+
     //Update a new habit to a user - unfinished
 /*     router.put('/update-habit/:username/:habitName', (req, res) => {
       console.log(req.body)
@@ -62,7 +63,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     // tracking route - Done?
     router.put('/update-habit/:username/:habitID/:indexTracking/:trueOrFalse', (req, res) => {
       usersCollection.updateOne({ "username": req.params.username },
-      {$push: { [`habit.${req.params.habitID}.tracking`] : true}}, true,false)
+      {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false)
       .then(
           res.send("Tracking updated")
       )

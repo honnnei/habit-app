@@ -9,44 +9,61 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     const db = dbAPI.db("HabitTracker")
     const usersCollection = process.env.NODE_ENV === "test" ? db.collection("testing") : db.collection('users')
 
-    //Get all**
-
+    //Get all users
     router.get('/all', (req, res) => {
-        usersCollection.find().toArray()
+        usersCollection.find().toArray() //Read a document in the database
         .then(results => {
-            res.send(results)
+          (result) ? res.send(result) //If one or more documents exist 
+          : res.send("No documents"); //If there are no documents
           })
         .catch(error => console.error(error))
     });
     
-    //Get a single user's habits** - error handling on case sensitivity
+    //Get a single user
     router.get('/:username', (req, res) => {
-      usersCollection.findOne({"username": {$eq:req.params.username}})
+      req.params.username = req.params.username.toLowerCase();
+      usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
       .then(result => {
-        res.send(result)
+        (result) ? res.send(result) //If the document does exist 
+        : res.send("User does not exist"); //If the document does not exist 
       })
+      .catch(error => res.status(500).send(error))
     });
     
-    //Add a new user - works sends data to db - add a way to check if user exists
+    //Add a new user
     router.post('/add-user', (req, res) => {
-        usersCollection.insertOne(req.body)
-        .then(usersCollection.findOne({"username": {$eq:req.params.username}}))
-        .then(function(result) {
-          res.json(result);
+        req.body.username = req.body.username.toLowerCase(); 
+        usersCollection.findOne({"username": {$eq:req.body.username}}) //Read a document in the database
+        .then(result => {
+          if (result) { //If the document does exist
+            res.send("User already exists");
+          } else { //If the document does not exist  
+            usersCollection.insertOne(req.body) //Create a document in the database
+            .then(result => {
+              res.send("User added");
+            })
+            .catch(error => res.status(500).send(error)); 
+          };
         })
-        .catch(function(error) {
-          next(error);
-        });
+        .catch(error => res.status(500).send(error)); 
     });
-   
+
     //Add a new habit to a user**
     router.put('/add-habit/:username', (req, res) => {
-        console.log(req.body)
-      usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false)
-      .then(
-          res.send()
-      )
-      .catch(error => console.error(error))
+        req.params.username = req.params.username.toLowerCase();
+        usersCollection.findOne({"username": {$eq:req.body.username}}) //Read a document in the database
+        .then(result => {
+          if (result) { //If the document does exist
+            usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false) //Update a document in the database
+            .then(
+                res.send()
+            )
+            .catch(error => res.status(500).send(error)); 
+          } else { //If the document does not exist
+            res.send("User does not exist"); 
+          };
+        })
+        .catch(error => res.status(500).send(error)); 
     });
 
     //Update a new habit to a user - unfinished
@@ -62,6 +79,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
 
     // tracking route - Done?
     router.put('/update-habit/:username/:habitID/:indexTracking/:trueOrFalse', (req, res) => {
+        req.params.username = req.params.username.toLowerCase();
       usersCollection.updateOne({ "username": req.params.username },
       {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false)
       .then(
@@ -71,19 +89,26 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       });
 
     //Delete a habit of a user*
-    router.put('/delete-habit/:username', (req, res) => {
-        usersCollection.updateOne({"username": req.params.username}, { $pull: { "habit" : { "name": req.body.habitName } } })
+    router.put('/delete-habit/:username/:habitID', (req, res) => {
+        req.params.username = req.params.username.toLowerCase();
+        console.log(req.params.habitID)
+        usersCollection.updateOne({"username": req.params.username}, {$unset: {[`habit.${req.params.habitID}`] : 1}})
         .then(
-            res.send("Deleted something to the database")
+            console.log("unset")
+        )
+        usersCollection.updateOne({"username": req.params.username}, {$pull : {"habit" : null}})
+        .then(
+            res.send("Deleted a habit from user")
         )
         .catch(error => console.error(error))
     });
     
     //Delete a user*
       router.delete('/delete-user/:username', (req, res) => {
+        req.params.username = req.params.username.toLowerCase();
         usersCollection.deleteOne({"username": {$eq: req.params.username}})
         .then(
-            res.send("Deleted something to the database")
+            res.send("Deleted a user from the database")
         )
         .catch(error => console.error(error))
     });

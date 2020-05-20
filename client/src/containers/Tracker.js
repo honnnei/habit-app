@@ -29,11 +29,16 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
-  handleChange = (event, habitIndex) => {
+  handleChange = (event, habitIndex, trackIndex, trackValue) => {
       // event.preventDefault();
       // const {name, value, type, checked} = event.target
       // this.setState({ [name]: checked })
-    axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}`)
+
+      // /update-habit/:username/:habitID/:indexTracking/:trueOrFalse
+    let updatedTrackValue;
+    trackValue ? updatedTrackValue = false : updatedTrackValue = true;
+    console.log(habitIndex, trackIndex, trackValue, updatedTrackValue);
+    axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}/${trackIndex}/${updatedTrackValue}`)
     .then(response => response)
     .catch(error => {
       console.log("this is error", error.message);
@@ -44,28 +49,34 @@ class Tracker extends React.Component {
 
   mapHabitArray = () => {
     let habitArray = []
+    let trackArray = []
     if (this.state.userData.habit) {
-      habitArray = this.state.userData.habit.map((habit, index) => (
+      habitArray = this.state.userData.habit.map((habit, habitIndex) => (
         <div>
-          {/* <h3>tracking array is{JSON.stringify(habit.tracking.length)}</h3> */}
         <h1>{habit.habitName}</h1>
-        <h1>{index}</h1>
-        {()}
-        <form>
-          <input
-          id={index}
-          type="checkbox"
-          name={this.state.do_we_need_this}
-          checked={habit.tracking[habit.tracking.length - 1]}
-          onChange={event => this.handleChange(event, index)}
-          ></input>
-        </form>
-        {`this.state.habit_${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
-        </div>
+        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
         
+        {trackArray = habit.tracking.map((trackValue, trackIndex) => (
+            <div className="habit-track-input">
+              <h3>{habit.tracking.length}</h3>
+              <form>
+              <input
+              id={trackIndex}
+              type="checkbox"
+              name={this.state.do_we_need_this}
+              checked={trackValue}
+              onChange={event => this.handleChange(event, habitIndex, trackIndex, trackValue)}
+              ></input>
+            </form>
+          </div>
+        ))}
+        <div className="habit-tracking-array">
+        </div>
+        </div>
       )) 
     }
     return habitArray;
+    console.log(habitArray);
   }
   
   render() {

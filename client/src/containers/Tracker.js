@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 class Tracker extends React.Component {
   constructor(props) {
@@ -117,6 +118,7 @@ class Tracker extends React.Component {
         {
         this.state.userName ?
         <div className="trackerDiv">
+          <ProgressBar now={this.progressBar()} />
           <h1>{this.state.progress}</h1>
             <h1>{this.state.userName}</h1>
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>

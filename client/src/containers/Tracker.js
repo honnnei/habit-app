@@ -29,11 +29,16 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
-  handleChange = (event, habitIndex, trackIndex) => {
+  handleChange = (event, habitIndex, trackIndex, trackValue) => {
       // event.preventDefault();
       // const {name, value, type, checked} = event.target
       // this.setState({ [name]: checked })
-    axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}`)
+
+      // /update-habit/:username/:habitID/:indexTracking/:trueOrFalse
+    let updatedTrackValue;
+    trackValue ? updatedTrackValue = false : updatedTrackValue = true;
+    console.log(habitIndex, trackIndex, trackValue, updatedTrackValue);
+    axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}/${trackIndex}/${updatedTrackValue}`)
     .then(response => response)
     .catch(error => {
       console.log("this is error", error.message);
@@ -46,7 +51,7 @@ class Tracker extends React.Component {
     let habitArray = []
     let trackArray = []
     if (this.state.userData.habit) {
-      habitArray = this.state.userData.habit.map((habit, index) => (
+      habitArray = this.state.userData.habit.map((habit, habitIndex) => (
         <div>
         <h1>{habit.habitName}</h1>
         <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
@@ -56,11 +61,11 @@ class Tracker extends React.Component {
               <h3>{habit.tracking.length}</h3>
               <form>
               <input
-              id={index}
+              id={trackIndex}
               type="checkbox"
               name={this.state.do_we_need_this}
               checked={trackValue}
-              onChange={event => this.handleChange(event, trackIndex, index)}
+              onChange={event => this.handleChange(event, habitIndex, trackIndex, trackValue)}
               ></input>
             </form>
           </div>

@@ -63,7 +63,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     // tracking route - Done?
     router.put('/update-habit/:username/:habitID/:indexTracking/:trueOrFalse', (req, res) => {
       usersCollection.updateOne({ "username": req.params.username },
-      {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : req.params.trueOrFalse}}, true,false)
+      {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false)
       .then(
           res.send("Tracking updated")
       )

@@ -50,6 +50,7 @@ class Tracker extends React.Component {
           {/* <h3>tracking array is{JSON.stringify(habit.tracking.length)}</h3> */}
         <h1>{habit.habitName}</h1>
         <h1>{index}</h1>
+        {()}
         <form>
           <input
           id={index}

@@ -29,7 +29,7 @@ class Tracker extends React.Component {
   this.getUserHabits();
   }
 
-  handleChange = (event, habitIndex) => {
+  handleChange = (event, habitIndex, trackIndex) => {
       // event.preventDefault();
       // const {name, value, type, checked} = event.target
       // this.setState({ [name]: checked })
@@ -48,21 +48,25 @@ class Tracker extends React.Component {
     if (this.state.userData.habit) {
       habitArray = this.state.userData.habit.map((habit, index) => (
         <div>
-          {/* <h3>tracking array is{JSON.stringify(habit.tracking.length)}</h3> */}
         <h1>{habit.habitName}</h1>
-        <h1>{index}</h1>
+        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+        
         {trackArray = habit.tracking.map((trackValue, trackIndex) => (
-            <form>
-            <input
-            id={index}
-            type="checkbox"
-            name={this.state.do_we_need_this}
-            checked={trackValue}
-            onChange={event => this.handleChange(event, trackIndex, index)}
-            ></input>
-          </form>
-          // {`this.state.habit_${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
+            <div className="habit-track-input">
+              <h3>{habit.tracking.length}</h3>
+              <form>
+              <input
+              id={index}
+              type="checkbox"
+              name={this.state.do_we_need_this}
+              checked={trackValue}
+              onChange={event => this.handleChange(event, trackIndex, index)}
+              ></input>
+            </form>
+          </div>
         ))}
+        <div className="habit-tracking-array">
+        </div>
         </div>
       )) 
     }

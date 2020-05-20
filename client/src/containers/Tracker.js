@@ -34,7 +34,7 @@ class Tracker extends React.Component {
       // const {name, value, type, checked} = event.target
       // this.setState({ [name]: checked })
     axios.put(`/habits/update-habit/${this.state.userName}/${habitIndex}`)
-    .then(response => console.log(response))
+    .then(response => response)
     .catch(error => {
       console.log("this is error", error.message);
     });

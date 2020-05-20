@@ -35,7 +35,7 @@ import { useState, useEffect } from 'react';
         date: new Date().toISOString().split('T')[0],
         tracking: trackingArray
       })
-      .then(response => console.log(response))
+      .then(response => response)
       .catch(error => {
         console.log("this is error", error.message);
       });

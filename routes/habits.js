@@ -1,4 +1,3 @@
-// todo add routes
 const express = require('express');
 const router = express.Router();
 const {MongoClient} = require("mongodb")
@@ -8,7 +7,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
   .then(dbAPI => {
     console.log('Connected to Database')
     const db = dbAPI.db("HabitTracker")
-    const usersCollection = db.collection('users')
+    const usersCollection = process.env.NODE_ENV === "test" ? db.collection("testing") : db.collection('users')
 
     //Get all**
 
@@ -24,19 +23,16 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     router.get('/:username', (req, res) => {
       usersCollection.findOne({"username": {$eq:req.params.username}})
       .then(result => {
-        res.send(result)
+        res.send(result.habit)
       })
     });
-    //Add a new user - works sends data to datab
-
+    
+    //Add a new user - works sends data to db - add a way to check if user exists
     router.post('/add-user', (req, res) => {
         usersCollection.insertOne(req.body)
         .then(usersCollection.findOne({"username": {$eq:req.params.username}}))
         .then(function(result) {
           res.json(result);
-        })
-        .then(result => {
-          res.send(result)
         })
         .catch(function(error) {
           next(error);

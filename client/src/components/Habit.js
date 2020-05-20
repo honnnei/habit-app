@@ -49,6 +49,8 @@ import { useState, useEffect } from 'react';
 
           return (
             <div className="habit-container">
+              {!props.location.username ? <h1>login or get out</h1> :
+                <div>
                 <form>
                     <h3>Create Habit</h3>
                     <label htmlFor="habitName">What habit would you like to track?</label>
@@ -79,8 +81,8 @@ import { useState, useEffect } from 'react';
                 </form>
                 <div>
                   <Link to={{pathname:'/tracker', username: props.location.username}}><button onClick={createHabit}>Add</button></Link>
-                </div>
-              </div>  
+                </div></div>}
+              </div>
           );
       // }
 }

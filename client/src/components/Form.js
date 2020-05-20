@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css';
+
 
 class Form extends React.Component {
   constructor(props) {
@@ -32,25 +34,26 @@ class Form extends React.Component {
 
   render() {
     return (
-          <div className="FormContainer">
-            <div>
-            <form>
-                <h3>Sign Up!</h3>
-                <label>Your Username:</label>
-                    <input 
-                    name="newUsername" 
-                    type="text"
-                    value={this.state.newUsername}
-                    onChange={this.handleChange}
-                    ></input>
-            </form>
-            <Link to={{pathname:'/newUser', username : this.state.newUsername}}><button type='submit' onClick={this.validateNewUser}>Create User</button></Link>
-            </div>
-
-            <div>
+          <div className='container formDiv'>
+        
+            <div className='formsub justify-content-center ml-auto '>
+              <div className="form1">
                 <form>
-                <h3>Log In:</h3>
-                <label>Your Username:</label>
+                    <h3>Sign Up!</h3>
+                    <label className="ulabel">Create Username</label>
+                        <input 
+                        name="newUsername" 
+                        type="text"
+                        value={this.state.newUsername}
+                        onChange={this.handleChange}
+                        ></input>
+                </form>
+                <Link to={{pathname:'/newUser', username : this.state.newUsername}}><button className='createUserButton' type='submit' onClick={this.validateNewUser}>Create User</button></Link>
+             </div>
+            <div className='form2'>
+                <form>
+                <h3>Log In</h3>
+                <label className="ulabel">Enter Username</label>
                     <input 
                     name="existingUsername" 
                     type="text"
@@ -58,7 +61,8 @@ class Form extends React.Component {
                     onChange={this.handleChange}
                     ></input>
                 </form>
-                <Link to={{pathname:'/tracker', username : this.state.existingUsername}}><button type='submit' onClick={this.validateExistingUser}>Log In</button></Link>
+                <Link to={{pathname:'/tracker', username : this.state.existingUsername}}><button className="logInButton" type='submit' onClick={this.validateExistingUser}>Log In</button></Link>
+            </div>
             </div>
         </div>  
       

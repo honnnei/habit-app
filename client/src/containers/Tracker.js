@@ -47,7 +47,7 @@ const Tracker = (props) => {
       }
 
       useEffect(() => {
-        console.log("this is habit freaquency: ", habitFrequency);
+        console.log("this is habit frequency: ", habitFrequency);
       }, [habitFrequency]);
 
       useEffect(() => {
@@ -121,13 +121,15 @@ const Tracker = (props) => {
     if ((userData) && (userData.habit)) {
 
       habitArray = userData.habit.map((habit, habitIndex) => ( 
-      <div>
-       <h1> {habit.habitName} </h1>
+      <div className="habitsDiv">
+       <h5> {habit.habitName} </h5>
+       <div className="subProgress">
        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
-       <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+       </div>
+       {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
-          <div className = "habit-track-input" >
-            <h3> {habit.tracking.length} </h3> 
+          <div className = "habit-track-input " >
+            {/* <h3> {habit.tracking.length} </h3>  */}
             <form >
             <input
             id = {trackIndex}
@@ -150,14 +152,17 @@ const Tracker = (props) => {
     <React.Fragment > 
       {
       userName ?
-      <div className="trackerDiv">
-        <ProgressBar now={progressBar()} label = {progressBar()} variant = "success" />
-        <h1> {progress}</h1> 
-        <h1> {userName}</h1>
+      <div className="container trackerDiv">
+        <div className="container progessDiv">
+          <h3> Hey! {userName}</h3>
+          <p>You've set out some Habits to track. Don't forget to mark it when done.</p>
+          <h5>Here's your daily progress</h5><ProgressBar now={progressBar()} label = {progressBar()} variant = "success" />
+        </div>
+        {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">
           <Button color="danger" onClick={toggle}>+</Button>
           <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+            <ModalHeader toggle={toggle}>What shall we do today?</ModalHeader>
             <ModalBody>
             <div className="habit-container">
                 <form>

@@ -80,16 +80,6 @@ class Tracker extends React.Component {
    function habitProgressBar(habitFrequency, trackArray) {
       let habitProgress = 0;
       habitProgress = Math.floor((trackArray.filter(Boolean).length / habitFrequency) * 100);
-      // let maximumTrackNumber = 0;
-    // let dailyProgress = 0;
-    // let dailyProgressPercentage = 0;
-    //   if (trackArray) {
-    //       for ( let i = 0; i < trackArray.length; i++ ) {
-    //         // maximumTrackNumber += this.state.userData.habit[i].tracking.length;
-    //         dailyProgress += ;
-    //       }
-    //       dailyProgressPercentage = Math.floor((dailyProgress / maximumTrackNumber) * 100);
-    //       console.log('Daily progress is:' + dailyProgressPercentage + '%');
       console.log(habitFrequency, trackArray, habitProgress);
       return habitProgress;
     }

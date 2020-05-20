@@ -51,7 +51,7 @@ class Tracker extends React.Component {
           {/* <h3>tracking array is{JSON.stringify(habit.tracking.length)}</h3> */}
         <h1>{habit.habitName}</h1>
         <h1>{index}</h1>
-        {/* {trackArray = habit.tracking.map((trackValue, trackIndex) => (
+        {trackArray = habit.tracking.map((trackValue, trackIndex) => (
             <form>
             <input
             id={index}
@@ -62,11 +62,12 @@ class Tracker extends React.Component {
             ></input>
           </form>
           // {`this.state.habit_${index}` ? 'Habit Done!' : 'Habit NOT done :((('}
-        ))} */}
+        ))}
         </div>
       )) 
     }
     return habitArray;
+    console.log(habitArray);
   }
   
   render() {

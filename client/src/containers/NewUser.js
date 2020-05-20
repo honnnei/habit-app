@@ -12,7 +12,7 @@ class NewUser extends React.Component {
 
 createUser = () => {
   Axios.post('/habits/add-user', {
-    username : this.state.userName
+    username : this.props.location.username
   }).then(response => console.log(response))
   .catch(error => {
     console.log("this is error", error.message);
@@ -26,7 +26,7 @@ componentDidMount(){
   render() {
       return(
         <React.Fragment>
-        {this.state.username ? 
+        {this.state.userName ? 
         <div className="new-user">
               <h1>New Account</h1>
               <h3>USER SUCCESSFULLY CREATED</h3>

@@ -47,7 +47,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         })
         .catch(error => res.status(500).send(error)); 
     });
-   
+
     //Add a new habit to a user**
     router.put('/add-habit/:username', (req, res) => {
         req.params.username = req.params.username.toLowerCase();

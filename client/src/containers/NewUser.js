@@ -25,6 +25,8 @@ componentDidMount(){
 
   render() {
       return(
+        <React.Fragment>
+        {this.state.username ? 
         <div className="new-user">
               <h1>New Account</h1>
               <h3>USER SUCCESSFULLY CREATED</h3>
@@ -35,6 +37,13 @@ componentDidMount(){
                   <Link to='/'><button type='submit'>No</button></Link>
                 </div> 
         </div>
+        :
+        <div>
+        <h3>Please login to continue</h3>
+        <Link to="/"><button type="button">Go Back</button></Link>
+        </div>
+      }
+        </React.Fragment>
       );
   }
 }

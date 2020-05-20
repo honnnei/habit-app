@@ -71,11 +71,21 @@ class Tracker extends React.Component {
   render() {
     console.log(this.state)
       return(
+        <React.Fragment>
+        {
+        this.state.userName ?
         <div className="trackerDiv">
             <h1>{this.state.userName}</h1>
             <Link to={{pathname:'/habit/add', username:this.state.userName}}>Create Habit</Link>
             {this.mapHabitArray()}
         </div>
+        :
+        <div>
+        <h3>Please login to continue</h3>
+        <Link to="/"><button type="button">Go Back</button></Link>
+        </div>
+        }
+        </React.Fragment>
       );
   }
 }

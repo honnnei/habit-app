@@ -145,6 +145,8 @@ import { useState, useEffect } from 'react';
                 <input
                     id="rrequency" 
                     name="habitFrequency" 
+                    min="1"
+                    max="10"
                     type="number"
                     value={habitFrequency}
                     onChange={handleFrequency}

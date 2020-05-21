@@ -11,21 +11,21 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
 
     //Get all users
     router.get('/all', (req, res) => {
-      usersCollection.find().toArray() //Read a document in the database
+      usersCollection.find()//.toArray() //Read a document in the database
       .then(results => {
-        (result) ? res.send(result) //If one or more documents exist 
-        : res.send("No documents"); //If there are no documents
+        (result) ? res.status(200).send(result) //If one or more documents exist 
+        : res.status(400).send("No documents were found"); //If there are no documents
         })
       .catch(error => console.error(error))
     });
     
-    //Get a single user
+    //Get a single user*
     router.get('/:username', (req, res) => {
       req.params.username = req.params.username.toLowerCase();
       usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
       .then(result => {
-        (result) ? res.send(result) //If the document does exist 
-        : res.send("User does not exist"); //If the document does not exist 
+        (result) ? res.status(200).send(result) //If the document does exist 
+        : res.status(400).send("The requested user does not exist"); //If the document does not exist 
       })
       .catch(error => res.status(500).send(error))
     });
@@ -36,11 +36,11 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       usersCollection.findOne({"username": {$eq:req.body.username}}) //Read a document in the database
       .then(result => {
         if (result) { //If the document does exist
-          res.send("User already exists");
+          res.status(400).send("The requested user already exists");
         } else { //If the document does not exist  
           usersCollection.insertOne(req.body) //Create a document in the database
           .then(result => {
-            res.send("User added");
+            res.status(200).send("The requested user was added");
           })
           .catch(error => res.status(500).send(error)); 
         };
@@ -56,11 +56,11 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         if (result) { //If the document does exist
           usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false) //Update a document in the database
           .then(
-            res.send("Habit updated")
+            res.status(200).send("The requested habit was updated")
           )
           .catch(error => res.status(500).send(error)); 
         } else { //If the document does not exist
-          res.send("User does not exist"); 
+          res.status(400).send("The requested user does not exist"); 
         };
       })
       .catch(error => res.status(500).send(error)); 
@@ -82,41 +82,58 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       req.params.username = req.params.username.toLowerCase();
       usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
       .then(result => {
+        // res.send(`${result.habit.length},${req.params.habitID}`);
         if (result) { //If the document does exist
-          usersCollection.updateOne({ "username": req.params.username },
-          {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false) //Update a document in the database
-          .then(
-            res.send("Tracking field updated")
-          )
-          .catch(error => res.status(500).send(error));
+					if (result.habit.length > req.params.habitID){ //If habit does exist
+            if (result.habit[req.params.habitID].tracking.length > req.params.indexTracking){ //If tracking does exist
+              if (req.params.trueOrFalse == ("true" || "false")){ //If boolean
+                usersCollection.updateOne({ "username": req.params.username },
+                {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false) //Update a document in the database
+                .then(
+                  res.status(200).send("The requested tracking field was updated")
+                )
+                .catch(error => res.status(500).send(error));
+              } else { //If not boolean
+                res.status(400).send("The requested tracking field value is not boolean");
+              };
+						} else { //If tracking does not exist
+							res.status(400).send("The requested tracking field does not exist");
+						};
+					} else { //If habit does not exist
+						res.status(400).send("The requested habit does not exist");
+					};						
         } else { //If the document does not exist
-          res.send("User does not exist"); 
+          res.status(400).send("The requested user does not exist"); 
         };
       })
       .catch(error => res.status(500).send(error));  
     });
 
-    //Delete a habit of a user
+    //Delete a habit of a user*
     router.put('/delete-habit/:username/:habitID', (req, res) => {
-        req.params.username = req.params.username.toLowerCase();
-        usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
-        .then(result => {
-          if (result) { //If the document does exist
-            usersCollection.updateOne({"username": req.params.username}, {$unset: {[`habit.${req.params.habitID}`] : 1}}) //Update a document in the database
-            .then(
-            usersCollection.updateOne({"username": req.params.username}, {$pull : {"habit" : null}})) //Update a document in the database
-            .then(
-                res.send("Deleted a habit from user")
-            )
-            .catch(error => res.status(500).send(error));
-          } else { //If the document does not exist
-            res.send("User does not exist"); 
-          };
-        })
-        .catch(error => res.status(500).send(error));  
-      });
+			req.params.username = req.params.username.toLowerCase();
+			usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
+			.then(result => {
+				if (result) { //If the document does exist
+					if (result.habit.length > req.params.habitID){ //If habit does exist
+						usersCollection.updateOne({"username": req.params.username}, {$unset: {[`habit.${req.params.habitID}`] : 1}}) //Update a document in the database
+						.then(
+						usersCollection.updateOne({"username": req.params.username}, {$pull : {"habit" : null}})) //Update a document in the database
+						.then(
+								res.status(200).send("The requested habit was deleted")
+						)
+						.catch(error => res.status(500).send(error));
+					} else { //If habit does not exist
+						res.status(400).send("The requested habit does not exist"); 
+					};
+				} else { //If the document does not exist
+					res.status(400).send("The requested user does not exist"); 
+				};
+			})
+			.catch(error => res.status(500).send(error));  
+		});
     
-    //Delete a user
+    //Delete a user*
       router.delete('/delete-user/:username', (req, res) => {
         req.params.username = req.params.username.toLowerCase();
         usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
@@ -124,11 +141,11 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         if (result){
           usersCollection.deleteOne({"username": {$eq: req.params.username}})
           .then(
-            res.send("Deleted user")
+            res.status(200).send("The requested user was deleted")
           )
         }
         else{
-          res.send("User does not exist")
+          res.status(400).send("The requested user does not exist")
         }
       })
       .catch(error => res.status(500).send(error))

@@ -72,6 +72,20 @@ Plan for today:
 ### Stand Up Wed
 
 ### Stand Up Thu
+Steven:
+* yesterday helped finish the routes
+* made suggestions to the delete button
+* spreadshit for the presentation
+* today: testing
+Huseyin:
+* finish off the delte button
+* tests 
+James:
+* yesterday: yesterday: made progress bars and tracking work, styling for sign up page
+* today: styling + testing frontned
+Hanna:
+* yesterday: made progress bars and tracking work, refactored to Hooks
+* today: styling + testing frontned
 
 ### Stand Up Fri
 

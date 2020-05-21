@@ -42,7 +42,7 @@ class Form extends React.Component {
               <div className='container marbleAnimate'>
             <h1>Marbles</h1>
             <h4>Habit Tracker App</h4>
-            <p>"Don't lose your marbles..."</p>
+            <p>"Hover On the Dude Below!"</p>
             <Animation />
             </div>
             

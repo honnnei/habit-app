@@ -147,9 +147,9 @@ input {
     height: 80vh;
     width: 300px;
     color: white;
-    background: #3dc1d3;  
-    background: -webkit-linear-gradient(to bottom, #fff,#3dc1d3);  
-    background: linear-gradient(to bottom, #fff, #3dc1d3); 
+    background: #lightblue;  
+    background: -webkit-linear-gradient(to bottom, #fff,lightblue);  
+    background: linear-gradient(to bottom, #fff, lightblue); 
   }
 
 .marbleAnimate
@@ -209,9 +209,9 @@ p {
   align-items: center;
   min-height: 100px;
   width: 100%;
-  background: #3dc1d3;  
-  background: -webkit-linear-gradient(to right, #fff,#83d1db);  
-  background: linear-gradient(to right, #fff, #3dc1d3); 
+  background: lightblue;  
+  background: -webkit-linear-gradient(to right, #fff,lightblue);  
+  background: linear-gradient(to right, #fff, lightblue); 
   padding: 0px 20px;
 }
 
@@ -224,6 +224,11 @@ background-color: #d3f0f8;
 padding: 0px 20px;
 }
 
+.navbarContainer
+h3 {
+  margin-top: 20px;
+}
+
 .logOutButton {
   background-color: white;
   border: 1px #ff5c40 solid;
@@ -232,7 +237,7 @@ padding: 0px 20px;
   text-decoration: none;
   margin: 10px 2px;
   border-radius: 10px;
-  font-size: 0.6em;
+  font-size: 1em;
 }
 
 

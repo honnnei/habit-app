@@ -6,7 +6,7 @@ export class NavLog extends Component {
         return (
             <div>
                 <nav className="nav navbarContainer" >
-                    <h3><img className="logoHead" src={Logo} alt="logo"/> Marbles - Habit Tracker</h3>
+                    <h3><img className="logoHead" src={Logo} alt="logo"/> Marbles</h3>
                     <a className="nav-link active logOutButton" href="/">Log Out</a>
                 </nav>
             </div>

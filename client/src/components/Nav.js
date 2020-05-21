@@ -6,7 +6,7 @@ export class Nav extends Component {
         return (
             <div>
                 <nav class="nav navHeader navbarHome">
-                    <h3><img className="logoHead" src={Logo} alt="logo"/> Marbles - Habit Tracker</h3>
+                    <h4>Don't lose Y<img className="logoHead" src={Logo} alt="logo"/>UR Marbles!</h4>
                 </nav>
             </div>
         )

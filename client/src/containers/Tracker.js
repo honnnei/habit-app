@@ -217,8 +217,8 @@ const Tracker = (props) => {
                 </div>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={() => {toggle(); createHabit();}}>Create</Button>
-              <Button color="secondary" onClick={toggle} id="cancel" >Cancel</Button>
+              <Button className="modalBtn" onClick={() => {toggle(); createHabit();}}>Create</Button>
+              <Button className="modalBtn2" onClick={toggle} id="cancel" >Cancel</Button>
             </ModalFooter>
           </Modal>
         </div>

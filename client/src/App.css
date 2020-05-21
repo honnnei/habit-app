@@ -308,14 +308,30 @@ margin: 10px 0px;
 /* UNWANTED USER  */
 
 .BackButton {
-  background-color: #ff5c40;
+  background-color: #3dc1d3;
     border: none;
     color: white;
     padding: 10px 40px;
     text-decoration: none;
     margin: 10px 2px;
-    cursor: pointer;
 }
 
-/* PROGRESS BAR */
+/* MODAL */
 
+.modalBtn {
+  background-color: #3dc1d3;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+
+.modalBtn2 {
+  background-color: #ff5c40;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}

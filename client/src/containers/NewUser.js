@@ -12,7 +12,7 @@ class NewUser extends React.Component {
 
 createUser = () => {
   Axios.post('/habits/add-user', {
-    username : this.state.userName
+    username : this.props.location.username
   }).then(response => console.log(response))
   .catch(error => {
     console.log("this is error", error.message);

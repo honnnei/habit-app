@@ -26,7 +26,6 @@ const App = () => {
                       exact 
                       component={Tracker}
                   />
-                  
                </Switch>
             </Router>
         </div>

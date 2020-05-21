@@ -19,7 +19,7 @@ const Tracker = (props) => {
         setHabitName(e.target.value);
       };
 
-      const handleFrequency = e => {
+      const handleFrequency = e => { 
         e.persist();
         setHabitFrequency(e.target.value);
       let array = [];
@@ -63,7 +63,8 @@ const Tracker = (props) => {
 
   const toggle = () => setModal(!modal);
 
-  const getUserHabits = () => {
+  function getUserHabits() {
+    console.log(userName)
     axios(`/habits/${userName}`)
       .then(response => response.data)
       .then(array => {
@@ -106,6 +107,15 @@ const Tracker = (props) => {
     }
   }
 
+  const deleteHabit = (event, habitID) => {
+    event.preventDefault()
+    console.log("this is delete" + habitID)
+    axios.put(`habits/delete-habit/${userName}/${habitID}`)
+    .then(
+      getUserHabits()
+    )
+  }
+
 
 
   const mapHabitArray = () => {
@@ -119,17 +129,26 @@ const Tracker = (props) => {
     }
 
     if ((userData) && (userData.habit)) {
-
+      console.log(userData)
       habitArray = userData.habit.map((habit, habitIndex) => ( 
-      <div className="habitsDiv">
+
+      <div className="habitsDiv" key = {habitIndex}>
        <h5> {habit.habitName} </h5>
        <div className="subProgress">
        {/* <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" /> */}
        </div>
        {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
-          <div className = "habit-track-input " >
+          <div className = "habit-track-input " key={trackIndex} >
             {/* <h3> {habit.tracking.length} </h3>  */}
+//from merge from dev:
+//       <div key = {habitIndex}>
+//        <h1> {habit.habitName} </h1>
+//        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
+//        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+//         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
+//           <div className = "habit-track-input" key={trackIndex}>
+//             <h3> {habit.tracking.length} </h3> 
             <form >
             <input
             id = {trackIndex}
@@ -142,7 +161,7 @@ const Tracker = (props) => {
             </form> 
             </div>
             ))} 
-          
+          <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
           </div>
       ))}
     return habitArray;

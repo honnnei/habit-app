@@ -198,7 +198,7 @@ const Tracker = (props) => {
         {mapHabitArray()}
       </div>
       :
-        <div>
+        <div className="BackDiv">
           <h3>Please login to continue</h3> <Link to="/"><button type="button">Go Back</button></Link >
         </div>
     } 

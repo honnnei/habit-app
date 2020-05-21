@@ -205,23 +205,24 @@ p {
 }
 
 .navbarHome{
-  justify-content: center;
   align-items: center;
+  justify-content: flex-end;
   min-height: 100px;
   width: 100%;
   background: lightblue;  
   background: -webkit-linear-gradient(to right, #fff,lightblue);  
   background: linear-gradient(to right, #fff, lightblue); 
-  padding: 0px 20px;
+  padding: 0px 90px;
 }
 
 .navbarContainer {
 justify-content: space-between;
 align-items: center;
-min-height: 100px;
+min-height: 150px;
 width: 100%;
 background-color: #d3f0f8;
 padding: 0px 20px;
+
 }
 
 .navbarContainer

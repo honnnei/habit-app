@@ -1,5 +1,6 @@
 * {
   font-family: 'Amatic SC', cursive;
+  font-size: 1.4rem;
 }
 
 /* FORM SECTION */
@@ -129,14 +130,20 @@ input {
 
 .marbleAnimate
 h1 {
-  font-size: 6em;
+  font-size: 3.6em;
   color: black;
   font-weight: 500;
 }
 
 .marbleAnimate
-h4, 
-p{
+h4 {
+  color: black;
+  text-align: center;
+}
+
+.marbleAnimate 
+p {
+  font-size: 19px;
   color: black;
   text-align: center;
 }

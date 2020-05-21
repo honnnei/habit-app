@@ -1,0 +1,149 @@
+* {
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.4rem;
+}
+
+/* FORM SECTION */
+.formDiv {
+  background-image: url(../src/img/Pattern-Randomized.svg);
+  background-size: cover;
+  height: 100%;
+  margin: auto;
+}
+
+.formsub {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+
+.form1 {
+  min-width: 300px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  padding: 90px 4px;
+  margin: 30px;
+}
+
+.form2 {
+    min-width: 300px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+    padding: 90px 4px;
+    margin: 30px;
+}
+
+.ulabel{
+  width: 70%;
+}
+
+input {
+    width: 60%;
+    border: none;
+    border-bottom: 2px solid;
+    outline: none;
+    padding: 4px;
+    background-color: #596275;
+    color: white;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding-left: 40px;
+  }
+  input[type=text] {
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 90%;
+  }
+
+  .createUserButton {
+    background-color: #f3a683;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+
+  }
+
+  .logInButton {
+    background-color: #3dc1d3;
+    border: none;
+    color: white;
+    padding: 10px 62px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+  }
+
+  /* PROGRESS HEADER */
+
+  .trackerDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto;
+
+  }
+
+  .progessDiv {
+    width: 100%;
+    margin: 30px 0px;
+  }
+
+  .habitsDiv {
+    margin: 10px 10px;
+    padding: 3px;
+
+  }
+
+  .subProgress {
+    width: 50%;
+    margin: 30px 0px;
+  }
+
+  /* ANIMATION */
+  
+  .animate {
+    width: 60%;
+  }
+
+  .marbleAnimate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 300px;
+    color: white;
+    background: #3dc1d3;  
+    background: -webkit-linear-gradient(to bottom, #fff,#3dc1d3);  
+    background: linear-gradient(to bottom, #fff, #3dc1d3); 
+  }
+
+.marbleAnimate
+h1 {
+  font-size: 3.6em;
+  color: black;
+  font-weight: 500;
+}
+
+.marbleAnimate
+h4 {
+  color: black;
+  text-align: center;
+}
+
+.marbleAnimate 
+p {
+  font-size: 19px;
+  color: black;
+  text-align: center;
+}

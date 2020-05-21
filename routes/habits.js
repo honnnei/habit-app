@@ -19,7 +19,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       .catch(error => console.error(error))
     });
     
-    //Get a single user*
+    //Get a single user
     router.get('/:username', (req, res) => {
       req.params.username = req.params.username.toLowerCase();
       usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
@@ -56,7 +56,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
         if (result) { //If the document does exist
           usersCollection.updateOne({"username": req.params.username}, {$push: {"habit": req.body}}, true, false) //Update a document in the database
           .then(
-            res.status(200).send("The requested habit was updated")
+            res.status(200).send("The requested habit was added")
           )
           .catch(error => res.status(500).send(error)); 
         } else { //If the document does not exist
@@ -94,7 +94,7 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
                 )
                 .catch(error => res.status(500).send(error));
               } else { //If not boolean
-                res.status(400).send("The requested tracking field value is not boolean");
+                res.status(400).send("The requested tracking field value is not 'true' or 'false'");
               };
 						} else { //If tracking does not exist
 							res.status(400).send("The requested tracking field does not exist");

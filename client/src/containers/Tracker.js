@@ -107,12 +107,14 @@ const Tracker = (props) => {
     }
   }
 
-/*   const deleteHabit = (habitID) => {
-    axios.put(`habits/delete-habit/${this.state.userName}/${habitID}`)
+  const deleteHabit = (event, habitID) => {
+    event.preventDefault()
+    console.log("this is delete" + habitID)
+    axios.put(`habits/delete-habit/${userName}/${habitID}`)
     .then(
-      this.getUserHabits()
+      getUserHabits()
     )
-  } */
+  }
 
 
 
@@ -148,7 +150,7 @@ const Tracker = (props) => {
             </form> 
             </div>
             ))} 
-          {/* <button type="button" onClick={deleteHabit(habitIndex)}>Delete Habit</button> */}
+          <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
           </div>
       ))}
     return habitArray;

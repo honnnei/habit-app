@@ -3,6 +3,24 @@
   font-size: 1.4rem;
 }
 
+.Home {
+  margin: 0;
+  padding: 0;
+}
+
+/* CHECHBOXES */
+/* input[type=checkbox] {
+  transform: scale(2);
+  -ms-transform: scale(2);
+  -webkit-transform: scale(2);
+  padding: 10px;
+  background-color: blue;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
 /* FORM SECTION */
 .formDiv {
   background-image: url(../src/img/Pattern-Randomized.svg);
@@ -63,7 +81,7 @@ input {
   }
 
   .createUserButton {
-    background-color: #f3a683;
+    background-color: #ff5c40;
     border: none;
     color: white;
     padding: 10px 40px;
@@ -105,8 +123,14 @@ input {
   }
 
   .subProgress {
-    width: 50%;
+    width: 100vw;
     margin: 30px 0px;
+    /* display: flex; */
+  }
+
+  form.habit-track-input {
+    background-color: lightblue;
+    border: 1px dashed black;
   }
 
   /* ANIMATION */
@@ -147,3 +171,131 @@ p {
   color: black;
   text-align: center;
 }
+
+/* NAV */
+.navHeader {
+  display: flex;
+  justify-content: center;
+  
+}
+
+/* NO USERNAME PAGE */
+
+.BackDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.pleaseLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  height: 50vh;
+  width: 50vw;
+  text-align: center;
+}
+
+/* navbar */
+
+.navbarContainer {
+justify-content: space-around;
+align-items: center;
+min-height: 100px;
+width: 100%;
+background-color: #d3f0f8;
+}
+
+.logOutButton {
+  background-color: white;
+  border: 1px #ff5c40 solid;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 10px 2px;
+  border-radius: 10px;
+  font-size: 0.6em;
+}
+
+
+/* TRACKING */
+.habitDiv {
+border: 3px dashed #f2f2f2;
+padding: 20px;
+display: flex;
+flex-direction: column;
+background-color: #d3f0f8;
+margin: 10px 0px;
+
+}
+
+.habitHeader {
+  display: flex;
+  justify: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.habitNameClass {
+  display: flex;
+  width: 50%;
+}
+
+.trackingMap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  height: 50px;
+}
+
+.trackCheckBox {
+  height: 20px;
+  width: 20px;
+}
+
+
+.AddHabitButton {
+  background-color: #3dc1d3;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px;
+    margin-left: 13px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.deleteButton {
+  background-color: #ff5c40;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+    font-size: 0.6em;
+    width: 100px;
+}
+
+
+/* UNWANTED USER  */
+
+.BackButton {
+  background-color: #ff5c40;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+
+/* PROGRESS BAR */
+

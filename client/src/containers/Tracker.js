@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import NavLog from '../components/NavLog'
 
 
 const Tracker = (props) => {
@@ -126,6 +126,7 @@ const Tracker = (props) => {
     console.log(userData)
     let habitArray = []
     let trackArray = []
+    let colorArray = ['dark', 'info', 'warning', 'primary'];
 
     function habitProgressBar(habitFrequency, trackArray) {
       let habitProgress = 0;
@@ -136,31 +137,34 @@ const Tracker = (props) => {
     if ((userData) && (userData.habit)) {
       habitArray = userData.habit.map((habit, habitIndex) => ( 
 
-      <div className="habitsDiv" key = {habitIndex}>
-       <h5> {habit.habitName} </h5>
+      <div className="habitDiv" key = {habitIndex}>
+        <div className="habitHeader">
+          <div className="habitNameClass"><h5> {habit.habitName} </h5></div>
        <div className="subProgress">
-       {/* <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" /> */}
+       <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="dark" />
        </div>
+       </div>
+       <div className="trackingMap container-fluid">
        {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
           <div className = "habit-track-input " key={trackIndex}>
             {/* <h3> {habit.tracking.length} </h3>  */}
             <div className = "habit-track-input" key={trackIndex}>
-                  <h3> {habit.tracking.length} </h3> 
                   <form>
                       <input
                       id = {trackIndex}
+                      className="trackCheckBox"
                       type = "checkbox"
                       name = "habit_track_check"
                       checked = {trackValue}
-                      onChange = {
-                        event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
+                      onChange = {event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
                       </input> 
                   </form> 
             </div>
           </div>
-                ))} 
-              <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
+                ))}
+                </div> 
+              <button type="button" className="deleteButton" onClick={event => deleteHabit(event, habitIndex)}>Delete</button>
           </div>
       ))}
       else{
@@ -175,15 +179,16 @@ const Tracker = (props) => {
       {
       userName ?
       <div className="container trackerDiv">
+         <NavLog />
         <div className="container progessDiv">
           <h3> Hey! {userName}</h3>
-          <p>You've set out some Habits to track. Don't forget to mark it when done.</p>
+          <p>You've set out some Habits to track. Don't forget to mark it when you're done.</p>
           <h5>Here's your daily progress</h5>
-          {/* <ProgressBar now={progressBar()} label = {progressBar()} variant = "success"></ProgressBar> */}
+          <ProgressBar now={progressBar()} label = {progressBar()} variant = "warning"></ProgressBar>
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">
-          <Button color="danger" onClick={toggle} id="add-habit">+</Button>
+          <Button className="AddHabitButton" onClick={toggle} id="add-habit"> Create </Button>
           <Modal isOpen={modal} toggle={toggle}> 
             <ModalHeader toggle={toggle}>What shall we do today?</ModalHeader>
             <ModalBody>
@@ -221,8 +226,13 @@ const Tracker = (props) => {
       </div>
       :
         <div className="BackDiv">
-          <h3>Please login to continue</h3> <Link to="/"><button type="button">Go Back</button></Link >
+        <div className="pleaseLogin">
+          <h3>Please login to continue</h3>
+          <Link to="/">
+            <button type="button" className="BackButton">Go Back</button>
+          </Link>
         </div>
+      </div>
     } 
     </React.Fragment>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+// import { ProgressBar } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
@@ -51,7 +51,7 @@ const Tracker = (props) => {
       }
 
       useEffect(() => {
-        console.log("this is habit freaquency: ", habitFrequency);
+        console.log("this is habit frequency: ", habitFrequency);
       }, [habitFrequency]);
 
       useEffect(() => {
@@ -134,26 +134,32 @@ const Tracker = (props) => {
 
     if ((userData) && (userData.habit)) {
       habitArray = userData.habit.map((habit, habitIndex) => ( 
-      <div key = {habitIndex}>
-       <h1> {habit.habitName} </h1>
-       <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
-       <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+
+      <div className="habitsDiv" key = {habitIndex}>
+       <h5> {habit.habitName} </h5>
+       <div className="subProgress">
+       {/* <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" /> */}
+       </div>
+       {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
-          <div className = "habit-track-input" key={trackIndex}>
-            <h3> {habit.tracking.length} </h3> 
-            <form >
-            <input
-            id = {trackIndex}
-            type = "checkbox"
-            name = "habit_track_check"
-            checked = {trackValue}
-            onChange = {
-              event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
-            </input> 
-            </form> 
+          <div className = "habit-track-input " key={trackIndex}>
+            {/* <h3> {habit.tracking.length} </h3>  */}
+            <div className = "habit-track-input" key={trackIndex}>
+                  <h3> {habit.tracking.length} </h3> 
+                  <form>
+                      <input
+                      id = {trackIndex}
+                      type = "checkbox"
+                      name = "habit_track_check"
+                      checked = {trackValue}
+                      onChange = {
+                        event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
+                      </input> 
+                  </form> 
             </div>
-            ))} 
-          <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
+          </div>
+                ))} 
+              <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
           </div>
       ))}
       else{
@@ -167,19 +173,23 @@ const Tracker = (props) => {
     <React.Fragment >
       {
       userName ?
-      <div className="trackerDiv">
-        <ProgressBar now={progressBar()} label = {progressBar()} variant = "success" />
-        <h1> {progress}</h1> 
-        <h1> {userName}</h1>
+      <div className="container trackerDiv">
+        <div className="container progessDiv">
+          <h3> Hey! {userName}</h3>
+          <p>You've set out some Habits to track. Don't forget to mark it when done.</p>
+          <h5>Here's your daily progress</h5>
+          {/* <ProgressBar now={progressBar()} label = {progressBar()} variant = "success"></ProgressBar> */}
+        </div>
+        {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">
-          <Button color="danger" onClick={toggle}>+</Button>
-          <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+          <Button color="danger" onClick={toggle} id="add-habit">+</Button>
+          <Modal isOpen={modal} toggle={toggle}> 
+            <ModalHeader toggle={toggle}>What shall we do today?</ModalHeader>
             <ModalBody>
             <div className="habit-container">
                 <form>
                     <h3>Create Habit</h3>
-                    <label htmlFor="habitName">What habit would you like to track?</label>
+                    <label id="label-in-modal" htmlFor="habitName">What habit would you like to track?</label>
                         <input
                         id="habitName" 
                         name="habitName" 
@@ -202,14 +212,14 @@ const Tracker = (props) => {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={() => {toggle(); createHabit();}}>Create</Button>
-              <Button color="secondary" onClick={toggle}>Cancel</Button>
+              <Button color="secondary" onClick={toggle} id="cancel" >Cancel</Button>
             </ModalFooter>
           </Modal>
         </div>
         {mapHabitArray()}
       </div>
       :
-        <div>
+        <div className="BackDiv">
           <h3>Please login to continue</h3> <Link to="/"><button type="button">Go Back</button></Link >
         </div>
     } 
@@ -218,3 +228,10 @@ const Tracker = (props) => {
 }
 
 export default Tracker;
+
+{/* //from merge from dev:
+      <div key = {habitIndex}>
+        <h1> {habit.habitName} </h1>
+        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
+        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+         {trackArray = habit.tracking.map((trackValue, trackIndex) => (  */}

@@ -84,6 +84,7 @@ const Tracker = (props) => {
   }, [userName]); // this too?
 
   const updateHabitTracking = (event, habitIndex, trackIndex, trackValue) => {
+    console.log('updatehabittracking');
     let updatedTrackValue;
     trackValue ? updatedTrackValue = false : updatedTrackValue = true;
     axios.put(`/habits/update-habit/${userName}/${habitIndex}/${trackIndex}/${updatedTrackValue}`)

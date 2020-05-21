@@ -139,7 +139,7 @@ const Tracker = (props) => {
 
       <div className="habitDiv" key = {habitIndex}>
         <div className="habitHeader">
-          <div className="habitNameClass"><h5> {habit.habitName} </h5></div>
+          <div className="habitNameClass"><h3> {habit.habitName} </h3></div>
        <div className="subProgress">
        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="dark" />
        </div>

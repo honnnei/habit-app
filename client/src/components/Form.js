@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import Animation from './Animation';
 
 
 class Form extends React.Component {
@@ -35,8 +36,14 @@ class Form extends React.Component {
   render() {
     return (
           <div className='container formDiv'>
-        
             <div className='formsub justify-content-center ml-auto '>
+              <div className='container marbleAnimate'>
+            <h1>Marbles</h1>
+            <h4>Habit Tracker App</h4>
+            <p>"Don't lose your marbles..."</p>
+            <Animation />
+            </div>
+            
               <div className="form1">
                 <form>
                     <h3>Sign Up!</h3>

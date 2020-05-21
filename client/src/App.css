@@ -1,6 +1,13 @@
+* {
+  font-family: 'Amatic SC', cursive;
+}
+
 /* FORM SECTION */
 .formDiv {
   background-image: url(../src/img/Pattern-Randomized.svg);
+  background-size: cover;
+  height: 100%;
+  margin: auto;
 }
 
 .formsub {
@@ -8,19 +15,28 @@
   flex-direction: row;
   align-items: center;
   height: 100vh;
-  margin: auto;
+  padding: 20px;
 }
 
-.form1,
+
+.form1 {
+  min-width: 300px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  padding: 90px 4px;
+  margin: 30px;
+}
+
 .form2 {
-    min-width: 200px;
+    min-width: 300px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #f2f2f2;
     padding: 90px 4px;
     margin: 30px;
-
 }
+
 .ulabel{
   width: 70%;
 }
@@ -92,8 +108,35 @@ input {
     margin: 30px 0px;
   }
 
-  /* CHECKBOX */
-  input[type="checkbox"] + label {
-    cursor: pointer;
-  }
+  /* ANIMATION */
   
+  .animate {
+    width: 60%;
+  }
+
+  .marbleAnimate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 300px;
+    color: white;
+    background: #3dc1d3;  
+    background: -webkit-linear-gradient(to bottom, #fff,#3dc1d3);  
+    background: linear-gradient(to bottom, #fff, #3dc1d3); 
+  }
+
+.marbleAnimate
+h1 {
+  font-size: 6em;
+  color: black;
+  font-weight: 500;
+}
+
+.marbleAnimate
+h4, 
+p{
+  color: black;
+  text-align: center;
+}

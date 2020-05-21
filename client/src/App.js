@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Form from './components/Form';
 import NewUser from './containers/NewUser';
 import Tracker from './containers/Tracker';
-import Habit from './components/Habit';
+// import Habit from './components/Habit';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,11 +35,11 @@ class App extends React.Component {
                       exact 
                       component={Tracker}
                   />
-                  <Route
+                  {/* <Route
                       path='/habit/add'
                       exact 
                       component={Habit}
-                  />
+                  /> */}
                </Switch>
             </Router>
         </div>

@@ -3,9 +3,18 @@
   font-size: 1.4rem;
 }
 
+#root {
+  height: 100hv;
+}
+
+.body {
+  height: 100hv;
+}
+
 .Home {
   margin: 0;
   padding: 0;
+  height: 100hv;
 }
 
 /* CHECHBOXES */
@@ -99,6 +108,33 @@ input {
     text-decoration: none;
     margin: 10px 2px;
     cursor: pointer;
+  }
+
+  /* NewUser */
+
+  .new-user-outer-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    width: 100vw;
+
+  }
+
+  .new-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* width: 100%; */
+  }
+
+  .new-user-links-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   /* PROGRESS HEADER */

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+// import { ProgressBar } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
@@ -124,7 +124,7 @@ const Tracker = (props) => {
       <div className="habitsDiv">
        <h5> {habit.habitName} </h5>
        <div className="subProgress">
-       <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
+       {/* <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" /> */}
        </div>
        {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
@@ -156,7 +156,8 @@ const Tracker = (props) => {
         <div className="container progessDiv">
           <h3> Hey! {userName}</h3>
           <p>You've set out some Habits to track. Don't forget to mark it when done.</p>
-          <h5>Here's your daily progress</h5><ProgressBar now={progressBar()} label = {progressBar()} variant = "success" />
+          <h5>Here's your daily progress</h5>
+          {/* <ProgressBar now={progressBar()} label = {progressBar()} variant = "success"></ProgressBar> */}
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">

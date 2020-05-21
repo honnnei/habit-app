@@ -26,7 +26,7 @@ componentDidMount(){
   render() {
       return(
         <React.Fragment>
-        {this.state.username ? 
+        {this.state.userName ? 
         <div className="new-user">
               <h1>New Account</h1>
               <h3>USER SUCCESSFULLY CREATED</h3>

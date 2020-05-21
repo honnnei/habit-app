@@ -8,7 +8,7 @@ import Tracker from '../containers/Tracker';
 describe('NewUser', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<BrowserRouter><NewUser location={{username: 'Johny'}} /></BrowserRouter>);
+    wrapper = shallow(<NewUser location={{ username: 'Johny' }} />);
   });
   
    test('Has link to Tracker', () => {                                     
@@ -25,17 +25,22 @@ describe('NewUser', () => {
   });  
 
   test('Link to tracker when YES button clicked', () => {   
-    let wrap = mount(<BrowserRouter><Form /></BrowserRouter> );                                       
-    let link = wrap.find( <Link to={{pathname:'/tracker', username : 'Hanna' }} /> );
+    let wrap = mount(<BrowserRouter><NewUser location={{ username: 'Johny' }}  /></BrowserRouter> );                                       
+    let link = wrap.find( <Link to={{pathname:'/tracker', username: 'James' }} />);
     expect(link).toBeTruthy();
   });
 
   test('Link to / when NO button clicked', () => {   
-    let wrap = mount(<BrowserRouter><Form /></BrowserRouter> );                                       
-    let link = wrap.find( <Link to={{pathname:'/', username : 'Hanna' }} /> );
+    let wrap = mount(<BrowserRouter><NewUser location={{ username: 'Johny' }}  /></BrowserRouter> );                                       
+    let link = wrap.find( <Link to='/' /> );
+    expect(link).toBeTruthy();
+  });
+
+  test('Link to / when BACK button clicked', () => {   
+    let wrap = mount(<BrowserRouter><NewUser location={{ username: 'Johny' }} /></BrowserRouter> );                                       
+    let link = wrap.find( <Link to='/' /> );
     expect(link).toBeTruthy();
   });
 
 
 });
-

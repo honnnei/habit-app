@@ -161,14 +161,14 @@ const Tracker = (props) => {
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">
-          <Button color="danger" onClick={toggle}>+</Button>
-          <Modal isOpen={modal} toggle={toggle}>
+          <Button color="danger" onClick={toggle} id="add-habit">+</Button>
+          <Modal isOpen={modal} toggle={toggle}> 
             <ModalHeader toggle={toggle}>What shall we do today?</ModalHeader>
             <ModalBody>
             <div className="habit-container">
                 <form>
                     <h3>Create Habit</h3>
-                    <label htmlFor="habitName">What habit would you like to track?</label>
+                    <label id="label-in-modal" htmlFor="habitName">What habit would you like to track?</label>
                         <input
                         id="habitName" 
                         name="habitName" 
@@ -191,7 +191,7 @@ const Tracker = (props) => {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={() => {toggle(); createHabit();}}>Create</Button>
-              <Button color="secondary" onClick={toggle}>Cancel</Button>
+              <Button color="secondary" onClick={toggle} id="cancel" >Cancel</Button>
             </ModalFooter>
           </Modal>
         </div>

@@ -11,6 +11,7 @@ describe('Tracker', () => {
   });
 
   test('contains tracker container div', () => {
+    console.log(wrapper.debug());
     expect(wrapper.find('.trackerDiv')).toBeTruthy();
   });  
 
@@ -68,5 +69,35 @@ describe('Tracker', () => {
   //     let route = wrap.find(<Link to='/habit/add' />)
   //     expect(route).toBeTruthy();
   // });
+
+  
+  it('Login input on change the existingUsername should change', () => {
+    const wrap = mount(<BrowserRouter><Tracker location={{username: 'Johny'}}/></BrowserRouter>); 
+    wrap.find('#add-habit').at(0).simulate('click');
+    expect(wrap.find('#label-in-modal')).toBeTruthy();
+  });
+
+  it('Login input on change the existingUsername should change', () => {
+    const wrap = mount(<BrowserRouter><Tracker location={{username: 'Johny'}}/></BrowserRouter>); 
+    wrap.find('#add-habit').at(0).simulate('click');
+    expect(wrap.find('#label-in-modal')).toBeTruthy();
+    wrap.find('#cancel').at(0).simulate('click');
+    expect(wrap.find('#label-in-modal')).toEqual({});
+  });
+
+  it('HandleChange works', () => {
+    const wrap = mount(<BrowserRouter><Tracker location={{username: 'Johny'}}/></BrowserRouter>); 
+    wrap.find('#add-habit').at(0).simulate('click');
+    wrap.find('input').at(0).simulate('change', { target: { name: 'habitName', value: 'Drinking Water' } });
+    expect(wrap.find('input').at(0).prop('value')).toEqual('Drinking Water');
+  });
+
+  // it('Login input on change the existingUsername should change', () => {
+  //   const wrapper = mount(<BrowserRouter><Form /></BrowserRouter>); 
+  //   wrapper.find('input').at(1).simulate('change', { target: { name: 'existingUsername', value: 'Boris' } });
+  //   expect(wrapper.find('input').at(1).prop('value')).toEqual('Boris');
+
+  // });
+  
 });
 

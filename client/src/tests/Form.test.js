@@ -53,7 +53,6 @@ describe('Form', () => {
   }); 
 
   test('contains Animation component', () => {
-    console.log(wrapper.debug());
     // expect(wrapper.containsMatchingElement(<Animation />)).toBeTruthy();
     expect((wrapper.find('.marbleAnimate'))).toBeTruthy();
   });

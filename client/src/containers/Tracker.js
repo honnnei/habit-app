@@ -205,6 +205,7 @@ const Tracker = (props) => {
                         ></input>
                     <label htmlFor="frequency">How many times per day are you looking to do this?</label>
                     <input
+                        className="freqBtn"
                         id="rrequency" 
                         name="habitFrequency" 
                         min="1"

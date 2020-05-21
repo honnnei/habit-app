@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ProgressBar } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import NavLog from '../components/NavLog'
-
+import Logo from '../img/marble.png';
 
 const Tracker = (props) => {
   const [userName, setUserName] = useState("");
@@ -228,7 +228,7 @@ const Tracker = (props) => {
       :
         <div className="BackDiv">
         <div className="pleaseLogin">
-          <h3>Please login to continue</h3>
+          <h3>Please Login t<img className="backLogo" src={Logo} alt="logo"/> Continue</h3>
           <Link to="/">
             <button type="button" className="BackButton">Go Back</button>
           </Link>

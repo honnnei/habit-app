@@ -180,6 +180,9 @@ p {
 }
 
 /* NO USERNAME PAGE */
+.backLogo {
+width: 25px;
+}
 
 .BackDiv {
   display: flex;

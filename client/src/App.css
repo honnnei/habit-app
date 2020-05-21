@@ -25,7 +25,7 @@
 .formDiv {
   background-image: url(../src/img/Pattern-Randomized.svg);
   background-size: cover;
-  height: 100%;
+  height: 100vh;
   margin: auto;
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   padding: 20px;
 }
 
@@ -144,7 +144,7 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     width: 300px;
     color: white;
     background: #3dc1d3;  
@@ -200,13 +200,28 @@ p {
 }
 
 /* navbar */
+.logoHead {
+  height: 30px;
+}
+
+.navbarHome{
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  width: 100%;
+  background: #3dc1d3;  
+  background: -webkit-linear-gradient(to right, #fff,#83d1db);  
+  background: linear-gradient(to right, #fff, #3dc1d3); 
+  padding: 0px 20px;
+}
 
 .navbarContainer {
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
 min-height: 100px;
 width: 100%;
 background-color: #d3f0f8;
+padding: 0px 20px;
 }
 
 .logOutButton {

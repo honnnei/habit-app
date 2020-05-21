@@ -139,29 +139,24 @@ const Tracker = (props) => {
        </div>
        {/* <p>You've set out to do this {habit.tracking.length} each day! Check as you go:</p> */}
         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
-          <div className = "habit-track-input " key={trackIndex} >
+          <div className = "habit-track-input " key={trackIndex}>
             {/* <h3> {habit.tracking.length} </h3>  */}
-//from merge from dev:
-//       <div key = {habitIndex}>
-//        <h1> {habit.habitName} </h1>
-//        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
-//        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
-//         {trackArray = habit.tracking.map((trackValue, trackIndex) => ( 
-//           <div className = "habit-track-input" key={trackIndex}>
-//             <h3> {habit.tracking.length} </h3> 
-            <form >
-            <input
-            id = {trackIndex}
-            type = "checkbox"
-            name = "habit_track_check"
-            checked = {trackValue}
-            onChange = {
-              event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
-            </input> 
-            </form> 
+            <div className = "habit-track-input" key={trackIndex}>
+                  <h3> {habit.tracking.length} </h3> 
+                  <form>
+                      <input
+                      id = {trackIndex}
+                      type = "checkbox"
+                      name = "habit_track_check"
+                      checked = {trackValue}
+                      onChange = {
+                        event => updateHabitTracking(event, habitIndex, trackIndex, trackValue)}>
+                      </input> 
+                  </form> 
             </div>
-            ))} 
-          <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
+          </div>
+                ))} 
+              <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
           </div>
       ))}
     return habitArray;
@@ -226,3 +221,10 @@ const Tracker = (props) => {
 }
 
 export default Tracker;
+
+{/* //from merge from dev:
+      <div key = {habitIndex}>
+        <h1> {habit.habitName} </h1>
+        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="success" />
+        <h3>You've set out to do this {habit.tracking.length} each day! Check as you go:</h3>
+         {trackArray = habit.tracking.map((trackValue, trackIndex) => (  */}

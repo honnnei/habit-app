@@ -8,7 +8,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const Tracker = (props) => {
   const [userName, setUserName] = useState("");
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [progress, setProgress] = useState(0);
   const [ habitFrequency, setHabitFrequency ] = useState(0);
   const [ habitName, setHabitName ] = useState("");
@@ -38,11 +38,15 @@ const Tracker = (props) => {
             tracking: trackingArray
           })
           .then(response => response)
+          .then(
+            getUserHabits(),
+          )
+          .then(
+            toggle()
+          )
           .catch(error => {
             console.log("this is error", error.message);
-          });
-          getUserHabits();
-          toggle();
+          })
         }
       }
 
@@ -54,32 +58,30 @@ const Tracker = (props) => {
         console.log("this is habit name: ", habitName);
       }, [habitName]);
 
-  // const {
-  //   buttonLabel,
-  //   className
-  // } = props;
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   function getUserHabits() {
-    console.log(userName)
+    console.log("get user habits runs")
     axios(`/habits/${userName}`)
       .then(response => response.data)
       .then(array => {
         setUserData(array)
-      });
+      })
   }
-
   useEffect(() => {
+    console.log("userdata: ", userData);
+  }, [userData]);
+
+   useEffect(() => {
     setUserName(props.location.username);
-    getUserHabits();
-  }, []);
+  }); // what does this do?
 
   useEffect(() => {
     getUserHabits();
-  }, [userName]);
+  }, [userName]); // this too?
 
   const updateHabitTracking = (event, habitIndex, trackIndex, trackValue) => {
     let updatedTrackValue;
@@ -113,12 +115,14 @@ const Tracker = (props) => {
     axios.put(`habits/delete-habit/${userName}/${habitID}`)
     .then(
       getUserHabits()
+      // toggle()
     )
   }
 
 
 
   const mapHabitArray = () => {
+    console.log(userData)
     let habitArray = []
     let trackArray = []
 
@@ -129,7 +133,6 @@ const Tracker = (props) => {
     }
 
     if ((userData) && (userData.habit)) {
-      console.log(userData)
       habitArray = userData.habit.map((habit, habitIndex) => ( 
 
       <div className="habitsDiv" key = {habitIndex}>
@@ -159,11 +162,15 @@ const Tracker = (props) => {
               <button type="button" onClick={event => deleteHabit(event, habitIndex)}>Delete Habit</button>
           </div>
       ))}
+      else{
+        habitArray = []
+
+      }
     return habitArray;
   }
 
   return ( 
-    <React.Fragment > 
+    <React.Fragment >
       {
       userName ?
       <div className="container trackerDiv">

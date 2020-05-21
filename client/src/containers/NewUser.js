@@ -34,13 +34,17 @@ componentDidMount(){
               <p>Are you ready to track your Habits? </p>
                 <div>
                   <Link to={{pathname:'/tracker', username:this.state.userName}}><button type='submit' >Yes</button></Link>
-                  <Link to='/'><button type='submit'>No</button></Link>
+                  <Link to='/'><button type='submit'>Log Out</button></Link>
                 </div> 
         </div>
         :
         <div className="BackDiv">
-        <h3>Please login to continue</h3>
-        <Link to="/"><button type="button">Go Back</button></Link>
+          <div className="pleaseLogin">
+            <h3>Please login to continue</h3>
+            <Link to="/">
+              <button type="button" className="BackButton">Go Back</button>
+            </Link>
+          </div>
         </div>
       }
         </React.Fragment>

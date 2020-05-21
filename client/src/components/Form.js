@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import Animation from './Animation';
+import Nav from './Nav';
 
 
 class Form extends React.Component {
@@ -36,6 +37,7 @@ class Form extends React.Component {
   render() {
     return (
           <div className='container formDiv'>
+            <Nav />
             <div className='formsub justify-content-center ml-auto '>
               <div className='container marbleAnimate'>
             <h1>Marbles</h1>

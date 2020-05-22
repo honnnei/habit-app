@@ -8,16 +8,6 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
     console.log('Connected to Database')
     const db = dbAPI.db("HabitTracker")
     const usersCollection = process.env.NODE_ENV === "test" ? db.collection("testing") : db.collection('users')
-
-    //Get all users
-    router.get('/all', (req, res) => {
-      usersCollection.find()//.toArray() //Read a document in the database
-      .then(results => {
-        (result) ? res.status(200).send(result) //If one or more documents exist 
-        : res.status(400).send("No documents were found"); //If there are no documents
-        })
-      .catch(error => console.error(error))
-    });
     
     //Get a single user
     router.get('/:username', (req, res) => {
@@ -66,74 +56,54 @@ MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: tr
       .catch(error => res.status(500).send(error)); 
     });
 
-    //Update a new habit to a user - unfinished
-/*     router.put('/update-habit/:username/:habitName', (req, res) => {
-      console.log(req.body)
-    usersCollection.updateOne({"username": req.params.username, "habit.habitName":  req.params.habitName },
-    { $set: {"": ""}})
-    .then(
-        res.send("Posted something to the database")
-    )
-    .catch(error => console.error(error))
-    }); */
-
     //Update a tracking field
     router.put('/update-habit/:username/:habitID/:indexTracking/:trueOrFalse', (req, res) => {
       req.params.username = req.params.username.toLowerCase();
       usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
       .then(result => {
-        // res.send(`${result.habit.length},${req.params.habitID}`);
-        if (result) { //If the document does exist
-					if (result.habit.length > req.params.habitID){ //If habit does exist
-            if (result.habit[req.params.habitID].tracking.length > req.params.indexTracking){ //If tracking does exist
-              if (req.params.trueOrFalse == ("true" || "false")){ //If boolean
-                usersCollection.updateOne({ "username": req.params.username },
-                {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false) //Update a document in the database
-                .then(
-                  res.status(200).send("The requested tracking field was updated")
-                )
-                .catch(error => res.status(500).send(error));
-              } else { //If not boolean
-                res.status(400).send("The requested tracking field value is not 'true' or 'false'");
-              };
-						} else { //If tracking does not exist
-							res.status(400).send("The requested tracking field does not exist");
-						};
-					} else { //If habit does not exist
-						res.status(400).send("The requested habit does not exist");
-					};						
-        } else { //If the document does not exist
-          res.status(400).send("The requested user does not exist"); 
+        if (result === null) { //If the document does not exist
+          res.status(400).send("The requested user does not exist");
+        } else if (result.habit.length < req.params.habitID) { //If habit does not exist
+          res.status(400).send("The requested habit does not exist");
+        } else if (result.habit[req.params.habitID].tracking.length < req.params.indexTracking) { //If tracking does not exist
+          res.status(400).send("The requested tracking field does not exist");
+        } else if ((req.params.trueOrFalse !== "true") && (req.params.trueOrFalse !== "false")) { //If not boolean
+          res.status(400).send("The requested tracking field value is not 'true' or 'false'");
+        } else { //Update a document in the database
+          usersCollection.updateOne({ "username": req.params.username },
+          {$set: { [`habit.${req.params.habitID}.tracking.${req.params.indexTracking}`] : eval(req.params.trueOrFalse)}}, true,false)
+          .then(
+            res.status(200).send("The requested tracking field was updated")
+          )
+          .catch(error => res.status(500).send(error));
         };
       })
       .catch(error => res.status(500).send(error));  
     });
 
-    //Delete a habit of a user*
+    //Delete a habit of a user
     router.put('/delete-habit/:username/:habitID', (req, res) => {
 			req.params.username = req.params.username.toLowerCase();
 			usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database
 			.then(result => {
-				if (result) { //If the document does exist
-					if (result.habit.length > req.params.habitID){ //If habit does exist
-						usersCollection.updateOne({"username": req.params.username}, {$unset: {[`habit.${req.params.habitID}`] : 1}}) //Update a document in the database
-						.then(
-						usersCollection.updateOne({"username": req.params.username}, {$pull : {"habit" : null}})) //Update a document in the database
-						.then(
-								res.status(200).send("The requested habit was deleted")
-						)
-						.catch(error => res.status(500).send(error));
-					} else { //If habit does not exist
-						res.status(400).send("The requested habit does not exist"); 
-					};
-				} else { //If the document does not exist
-					res.status(400).send("The requested user does not exist"); 
-				};
+        if (result === null) { //If the document does not exist
+          res.status(400).send("The requested user does not exist"); 
+        } else if (result.habit.length < req.params.habitID) { //If habit does not exist
+          res.status(400).send("The requested habit does not exist"); 
+        } else {
+          usersCollection.updateOne({"username": req.params.username}, {$unset: {[`habit.${req.params.habitID}`] : 1}}) //Update a document in the database
+          .then(
+          usersCollection.updateOne({"username": req.params.username}, {$pull : {"habit" : null}})) //Update a document in the database
+          .then(
+              res.status(200).send("The requested habit was deleted")
+          )
+          .catch(error => res.status(500).send(error));
+        }
 			})
 			.catch(error => res.status(500).send(error));  
 		});
     
-    //Delete a user*
+    //Delete a user
       router.delete('/delete-user/:username', (req, res) => {
         req.params.username = req.params.username.toLowerCase();
         usersCollection.findOne({"username": {$eq:req.params.username}}) //Read a document in the database

@@ -28,9 +28,9 @@ componentDidMount(){
       return(
         <React.Fragment>
         {this.state.userName ? 
-        <div className="new-user-outer-container">
+        <div className="container new-user-outer-container">
           <NavLog />
-          <div className="new-user-container">
+          <div className="container new-user-container">
             <div className="new-user">
                   <h1>Hello, {this.state.userName},</h1>
                   <h2>Your Account was successfully created.</h2>

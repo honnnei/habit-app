@@ -168,6 +168,14 @@ input {
     /* display: flex; */
   }
 
+  .progBarMain{
+    height: 50px;
+  }
+
+  .progBarSub {
+    height: 30px;
+  }
+
   form.habit-track-input {
     background-color: lightblue;
     border: 1px dashed black;

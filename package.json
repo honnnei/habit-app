@@ -21,12 +21,14 @@
   "homepage": "https://github.com/honnnei/habit-app#readme",
   "devDependencies": {
     "axios": "^0.19.2",
+    "babel-plugin-istanbul": "^6.0.0",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mocha": "^7.1.2",
     "mongodb": "^3.5.7",
+    "nyc": "^15.0.1",
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {

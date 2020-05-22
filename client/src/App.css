@@ -1,0 +1,385 @@
+* {
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.4rem;
+}
+
+#root {
+  height: 100hv;
+}
+
+.body {
+  height: 100hv;
+}
+
+.Home {
+  margin: 0;
+  padding: 0;
+  height: 100hv;
+}
+
+/* CHECHBOXES */
+/* input[type=checkbox] {
+  transform: scale(2);
+  -ms-transform: scale(2);
+  -webkit-transform: scale(2);
+  padding: 10px;
+  background-color: blue;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* FORM SECTION */
+.formDiv {
+  background-image: url(../src/img/Pattern-Randomized.svg);
+  background-size: cover;
+  height: 100vh;
+  margin: auto;
+}
+
+.formsub {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 80vh;
+  padding: 20px;
+}
+
+
+.form1 {
+  min-width: 300px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #f2f2f2;
+  padding: 90px 4px;
+  margin: 30px;
+}
+
+.form2 {
+    min-width: 300px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+    padding: 90px 4px;
+    margin: 30px;
+}
+
+.ulabel{
+  width: 70%;
+}
+
+input {
+    width: 60%;
+    border: none;
+    border-bottom: 2px solid;
+    outline: none;
+    padding: 4px;
+    background-color: #596275;
+    color: white;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding-left: 40px;
+    font-family: monospace;
+    font-size: 0.7 em;
+  }
+  input[type=text] {
+    transition: width 0.4s ease-in-out;
+  }
+  
+  input[type=text]:focus {
+    width: 90%;
+  }
+
+  .createUserButton {
+    background-color: #ff5c40;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+
+  }
+
+  .logInButton {
+    background-color: #3dc1d3;
+    border: none;
+    color: white;
+    padding: 10px 62px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+  }
+
+  /* NewUser */
+
+  .new-user-outer-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    width: 100vw;
+
+  }
+
+  .new-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* width: 100%; */
+  }
+
+  .new-user-links-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px;
+    margin: 10px;
+  }
+
+  /* PROGRESS HEADER */
+
+  .trackerDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: auto;
+
+  }
+
+  .progessDiv {
+    width: 100%;
+    margin: 30px 0px;
+  }
+
+  .habitsDiv {
+    margin: 10px 10px;
+    padding: 3px;
+
+  }
+
+  .subProgress {
+    width: 100vw;
+    margin: 30px 0px;
+    /* display: flex; */
+  }
+
+  form.habit-track-input {
+    background-color: lightblue;
+    border: 1px dashed black;
+  }
+
+  /* ANIMATION */
+  
+  .animate {
+    width: 60%;
+  }
+
+  .marbleAnimate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 300px;
+    color: white;
+    background: #lightblue;  
+    background: -webkit-linear-gradient(to bottom, #fff,lightblue);  
+    background: linear-gradient(to bottom, #fff, lightblue); 
+    
+  }
+
+.marbleAnimate
+h1 {
+  font-size: 3.6em;
+  color: black;
+  font-weight: 500;
+}
+
+.marbleAnimate
+h4 {
+  color: black;
+  text-align: center;
+}
+
+.marbleAnimate 
+p {
+  font-size: 19px;
+  color: black;
+  text-align: center;
+}
+
+/* NAV Section*/
+.navHeader {
+  display: flex;
+  justify-content: center;
+  
+}
+
+/* NO USERNAME PAGE */
+.backLogo {
+width: 25px;
+}
+
+.BackDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.pleaseLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  height: 50vh;
+  width: 50vw;
+  text-align: center;
+}
+
+/* navbar */
+.logoHead {
+  height: 30px;
+}
+
+.navbarHome{
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100px;
+  width: 100%;
+  background: lightblue;  
+  background: -webkit-linear-gradient(to right, #fff,lightblue);  
+  background: linear-gradient(to right, #fff, lightblue); 
+  padding: 0px 90px;
+}
+
+.navbarContainer {
+justify-content: space-between;
+align-items: center;
+min-height: 150px;
+width: 100%;
+background-color: #d3f0f8;
+padding: 0px 20px;
+
+}
+
+.navbarContainer
+h3 {
+  margin-top: 20px;
+}
+
+.logOutButton {
+  background-color: white;
+  border: 1px #ff5c40 solid;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 10px 2px;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+
+/* TRACKING */
+.habitDiv {
+border: 3px dashed #f2f2f2;
+padding: 20px;
+display: flex;
+flex-direction: column;
+background-color: #d3f0f8;
+margin: 10px 0px;
+
+}
+
+.habitHeader {
+  display: flex;
+  justify: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.habitNameClass {
+  display: flex;
+  width: 50%;
+}
+
+.trackingMap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  height: 50px;
+}
+
+.trackCheckBox {
+  height: 20px;
+  width: 20px;
+}
+
+
+.AddHabitButton {
+  background-color: #3dc1d3;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px;
+    margin-left: 13px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.deleteButton {
+  background-color: #ff5c40;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+    font-size: 0.6em;
+    width: 100px;
+}
+
+
+/* UNWANTED USER  */
+
+.BackButton {
+  background-color: #3dc1d3;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-decoration: none;
+    margin: 10px 2px;
+}
+
+/* MODAL */
+
+.modalBtn {
+  background-color: #3dc1d3;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+
+.modalBtn2 {
+  background-color: #ff5c40;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+.freqBtn {
+  padding-right: 20px;
+}

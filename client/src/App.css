@@ -135,7 +135,7 @@ input {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
     margin: 10px;
   }
 
@@ -188,6 +188,7 @@ input {
     background: #lightblue;  
     background: -webkit-linear-gradient(to bottom, #fff,lightblue);  
     background: linear-gradient(to bottom, #fff, lightblue); 
+    
   }
 
 .marbleAnimate

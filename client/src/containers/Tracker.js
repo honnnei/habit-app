@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ProgressBar } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import NavLog from '../components/NavLog'
-
+import Logo from '../img/marble.png';
 
 const Tracker = (props) => {
   const [userName, setUserName] = useState("");
@@ -39,10 +39,10 @@ const Tracker = (props) => {
           })
           .then(response => response)
           .then(
-            getUserHabits(),
+            toggle()
           )
           .then(
-            toggle()
+            getUserHabits(),
           )
           .catch(error => {
             console.log("this is error", error.message);
@@ -61,7 +61,9 @@ const Tracker = (props) => {
 
   const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setModal(!modal)
+  };
 
   function getUserHabits() {
     console.log("get user habits runs")
@@ -70,6 +72,7 @@ const Tracker = (props) => {
       .then(array => {
         setUserData(array)
       })
+      
   }
   useEffect(() => {
     console.log("userdata: ", userData);
@@ -99,8 +102,9 @@ const Tracker = (props) => {
     let maximumTrackNumber = 0;
     let dailyProgress = 0;
     let dailyProgressPercentage = 0;
-
-    if ((userData) && (userData.habit)) {
+    if ((!userData) || (!userData.habit)) {
+      return dailyProgressPercentage;
+    } else if ((userData) && (userData.habit)) {
       for (let i = 0; i < userData.habit.length; i++) {
         maximumTrackNumber += userData.habit[i].tracking.length;
         dailyProgress += userData.habit[i].tracking.filter(Boolean).length;
@@ -139,7 +143,7 @@ const Tracker = (props) => {
 
       <div className="habitDiv" key = {habitIndex}>
         <div className="habitHeader">
-          <div className="habitNameClass"><h5> {habit.habitName} </h5></div>
+          <div className="habitNameClass"><h3> {habit.habitName} </h3></div>
        <div className="subProgress">
        <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="dark" />
        </div>
@@ -184,7 +188,7 @@ const Tracker = (props) => {
           <h3> Hey! {userName}</h3>
           <p>You've set out some Habits to track. Don't forget to mark it when you're done.</p>
           <h5>Here's your daily progress</h5>
-          <ProgressBar now={progressBar()} label = {progressBar()} variant = "warning"></ProgressBar>
+          <ProgressBar now={progressBar()} label = {JSON.stringify(progressBar()) + ' %'} variant = "warning"></ProgressBar>
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">
@@ -205,6 +209,7 @@ const Tracker = (props) => {
                         ></input>
                     <label htmlFor="frequency">How many times per day are you looking to do this?</label>
                     <input
+                        className="freqBtn"
                         id="rrequency" 
                         name="habitFrequency" 
                         min="1"
@@ -217,8 +222,8 @@ const Tracker = (props) => {
                 </div>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={() => {toggle(); createHabit();}}>Create</Button>
-              <Button color="secondary" onClick={toggle} id="cancel" >Cancel</Button>
+              <Button className="modalBtn" onClick={() => {toggle(); createHabit(); getUserHabits();}}>Create</Button>
+              <Button className="modalBtn2" onClick={toggle} id="cancel" >Cancel</Button>
             </ModalFooter>
           </Modal>
         </div>
@@ -227,7 +232,7 @@ const Tracker = (props) => {
       :
         <div className="BackDiv">
         <div className="pleaseLogin">
-          <h3>Please login to continue</h3>
+          <h3>Please Login t<img className="backLogo" src={Logo} alt="logo"/> Continue</h3>
           <Link to="/">
             <button type="button" className="BackButton">Go Back</button>
           </Link>

@@ -3,9 +3,18 @@
   font-size: 1.4rem;
 }
 
+#root {
+  height: 100hv;
+}
+
+.body {
+  height: 100hv;
+}
+
 .Home {
   margin: 0;
   padding: 0;
+  height: 100hv;
 }
 
 /* CHECHBOXES */
@@ -25,7 +34,7 @@
 .formDiv {
   background-image: url(../src/img/Pattern-Randomized.svg);
   background-size: cover;
-  height: 100%;
+  height: 100vh;
   margin: auto;
 }
 
@@ -33,7 +42,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   padding: 20px;
 }
 
@@ -101,6 +110,35 @@ input {
     cursor: pointer;
   }
 
+  /* NewUser */
+
+  .new-user-outer-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    width: 100vw;
+
+  }
+
+  .new-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* width: 100%; */
+  }
+
+  .new-user-links-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px;
+    margin: 10px;
+  }
+
   /* PROGRESS HEADER */
 
   .trackerDiv {
@@ -144,12 +182,13 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     width: 300px;
     color: white;
-    background: #3dc1d3;  
-    background: -webkit-linear-gradient(to bottom, #fff,#3dc1d3);  
-    background: linear-gradient(to bottom, #fff, #3dc1d3); 
+    background: #lightblue;  
+    background: -webkit-linear-gradient(to bottom, #fff,lightblue);  
+    background: linear-gradient(to bottom, #fff, lightblue); 
+    
   }
 
 .marbleAnimate
@@ -172,7 +211,7 @@ p {
   text-align: center;
 }
 
-/* NAV */
+/* NAV Section*/
 .navHeader {
   display: flex;
   justify-content: center;
@@ -180,6 +219,9 @@ p {
 }
 
 /* NO USERNAME PAGE */
+.backLogo {
+width: 25px;
+}
 
 .BackDiv {
   display: flex;
@@ -200,13 +242,34 @@ p {
 }
 
 /* navbar */
+.logoHead {
+  height: 30px;
+}
+
+.navbarHome{
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100px;
+  width: 100%;
+  background: lightblue;  
+  background: -webkit-linear-gradient(to right, #fff,lightblue);  
+  background: linear-gradient(to right, #fff, lightblue); 
+  padding: 0px 90px;
+}
 
 .navbarContainer {
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
-min-height: 100px;
+min-height: 150px;
 width: 100%;
 background-color: #d3f0f8;
+padding: 0px 20px;
+
+}
+
+.navbarContainer
+h3 {
+  margin-top: 20px;
 }
 
 .logOutButton {
@@ -217,7 +280,7 @@ background-color: #d3f0f8;
   text-decoration: none;
   margin: 10px 2px;
   border-radius: 10px;
-  font-size: 0.6em;
+  font-size: 1em;
 }
 
 
@@ -288,14 +351,33 @@ margin: 10px 0px;
 /* UNWANTED USER  */
 
 .BackButton {
-  background-color: #ff5c40;
+  background-color: #3dc1d3;
     border: none;
     color: white;
     padding: 10px 40px;
     text-decoration: none;
     margin: 10px 2px;
-    cursor: pointer;
 }
 
-/* PROGRESS BAR */
+/* MODAL */
 
+.modalBtn {
+  background-color: #3dc1d3;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+
+.modalBtn2 {
+  background-color: #ff5c40;
+  border: none;
+  color: white;
+  padding: 10px 40px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+.freqBtn {
+  padding-right: 20px;
+}

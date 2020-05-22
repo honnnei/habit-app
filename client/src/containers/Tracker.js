@@ -145,7 +145,7 @@ const Tracker = (props) => {
         <div className="habitHeader">
           <div className="habitNameClass"><h3> {habit.habitName} </h3></div>
        <div className="subProgress">
-       <ProgressBar now={habitProgressBar(habit.frequency, habit.tracking)} label={habitProgressBar(habit.frequency, habit.tracking)} variant="dark" />
+       <ProgressBar className="progBarSub" now={habitProgressBar(habit.frequency, habit.tracking)} label={JSON.stringify(habitProgressBar(habit.frequency, habit.tracking)) + ' %'} variant="dark" />
        </div>
        </div>
        <div className="trackingMap container-fluid">
@@ -188,7 +188,7 @@ const Tracker = (props) => {
           <h3> Hey! {userName}</h3>
           <p>You've set out some Habits to track. Don't forget to mark it when you're done.</p>
           <h5>Here's your daily progress</h5>
-          <ProgressBar now={progressBar()} label = {JSON.stringify(progressBar()) + ' %'} variant = "warning"></ProgressBar>
+          <ProgressBar className="progBarMain" now={progressBar()} label = {JSON.stringify(progressBar()) + ' %'} variant = "warning"></ProgressBar>
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">

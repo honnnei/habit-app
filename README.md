@@ -60,44 +60,45 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### Stand Up Tue
 
 * Steven:
-Yesterday: MongoDB set up on Huseyin's machine. All routes work through Postman
+  * Yesterday: MongoDB set up on Huseyin's machine. All routes work through Postman
+  * Today: link to frontend 
 
 * Huseyin:
-Yesterday: created basic routes
-Today: we need to link them to the frontend
+  * Yesterday: created basic routes
+  * Today: we need to link them to the frontend
 
 * Hanna:
-Yesterday: created basic frontend and tests
-Today: Add axios api requests and further tests
+  * Yesterday: created basic frontend and tests
+  * Today: Add axios api requests and further tests
 
 * James:
-Yesterday: created basic frontend and tests
-Today: Add axios api requests and further tests
+  * Yesterday: created basic frontend and tests
+  * Today: Add axios api requests and further tests
 
 ### Stand Up Wed
 
 * Huseyin:
-Yesterday: Added some basic error handling to routes and linked with frontend to test it works for everyone. Set up testing backend environment.
-* Today: Start working on delete button, createHabit function on frontend and some tests
+  * Yesterday: Added some basic error handling to routes and linked with frontend to test it works for everyone. Set up testing backend environment.
+  * Today: Start working on delete button, createHabit function on frontend and some tests
 
 ### Stand Up Thu
 * Steven:
-Yesterday: Helped finish the routes. Made suggestions to the delete button. Spreadsheet for the presentation.
-Today: Testing backend
+  * Yesterday: Helped finish the routes. Made suggestions to the delete button. Spreadsheet for the presentation.
+  * Today: Testing backend
 * Huseyin:
-Yesterday: Finished createHabit function and started delete button & tests
-Today: Finish delete button
+  * Yesterday: Finished createHabit function and started delete button & tests
+  * Today: Finish delete button
 * James:
-Yesterday: made progress bars and tracking work, styling for sign up page.
-Today: styling + testing frontned
+  * Yesterday: made progress bars and tracking work, styling for sign up page.
+  * Today: styling + testing frontned
 * Hanna:
-Yesterday: made progress bars and tracking work, refactored to Hooks.
-Today: styling + testing frontned
+  * Yesterday: made progress bars and tracking work, refactored to Hooks.
+  * Today: styling + testing frontned
 
 merge hell
 ### Stand Up Fri
 
 * Huseyin:
-Yesterday: helped fix bugs in deleting and adding habits. Couple frontend tests
-Today: Clean up readme file and contribute to presentation
+  * Yesterday: helped fix bugs in deleting and adding habits. Couple frontend tests
+  * Today: Clean up readme file and contribute to presentation
 

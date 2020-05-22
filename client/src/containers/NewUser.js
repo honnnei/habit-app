@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import NavLog from '../components/NavLog';
+import Nav from '../components/Nav';
 
 class NewUser extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ componentDidMount(){
         <React.Fragment>
         {this.state.userName ? 
         <div className="container new-user-outer-container">
-          <NavLog />
+          <Nav />
           <div className="container new-user-container">
             <div className="new-user">
                   <h1>Hello, {this.state.userName},</h1>

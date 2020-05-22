@@ -11,6 +11,7 @@ Hanna, Huseyin, Steven, James
 * I want to be able to delete habits (in case of a typo or I no longer want to track it)
 * I want my total progress and habit specific progress shown to me in an easy to understand way
 
+---
 
 ### To start (instructions on how to initialise App)
 
@@ -36,6 +37,8 @@ npm test
 ```
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+---
+
 ## Technology
 * React
 * NodeJS
@@ -43,19 +46,36 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 * Jest & Enzyme
 * Bootstrap
 
+---
+
 ## Issues / Solutions
-* <Router /> tag can only be use once in the App, otherwise the links and routes don't render components correctly
-* <BrowserRouter> tag needs to wrap the component in wrapper to avoid the error 'Link needs to be in Router'
-* BUG -> when you create a new user and go straight into creating habits and create a habit and press 'ADD' -> it redirects you to Tracker but doesn't map the array of habit for some reason. After you go through the 'login' route it does. This was fixed by refactoring the code, although now it sometimes requires you to double click checkboxes or delete button
-* passing a parameter AND event in handleChange, fixed.
-* a 1 character / change delay in handleChange function --> hence we want to introduce React Hooks.
+#### Issue 1 
+Router tag can only be use once in the App, otherwise the links and routes don't render components correctly
+#### Solution to issue 1
+BrowserRouter tag needs to wrap the component in wrapper to avoid the error 'Link needs to be in Router'
+#### Issue 2
+BUG -> when you create a new user and go straight into creating habits and create a habit and press 'ADD' -> it redirects you to Tracker but doesn't map the array of habit for some reason. After you go through the 'login' route it does. 
+#### Solution to issue 2
+This was fixed by refactoring the code, although now it sometimes requires you to double click checkboxes or delete button
+#### Issue 3
+passing a parameter AND event in handleChange --> fixed with syntax
+#### Issue 4
+a 1 character / change delay in handleChange function
+#### Solution to issue 4
+Using React Hooks.
 * Introducting Hooks solved the problem but testing became much harder, we had many nested functions within the functional component and a lot of logic running.
+
+---
 
 ## How we would develop our app further
 
 * Implement an authentication system, either using Okta or PassportJS
 * Could change the tracking system so that you have 1 checkbox for each habit per day and once complete you check it, if 2 or more days have passed with a certain habit checked then you build a streak. This could be instead of the current tracking system or on top of it.
 * Possibly revert back to a class component for the tracking as it contains a lot of data handling and states, would improve test-ability and possibly functionality.
+
+---
+
+## Stand Ups
 
 ### Stand Up Tue
 
@@ -80,6 +100,9 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 * Huseyin:
   * Yesterday: Added some basic error handling to routes and linked with frontend to test it works for everyone. Set up testing backend environment.
   * Today: Start working on delete button, createHabit function on frontend and some tests
+* Hanna:
+  * Yesterday: Connected frontend and backend, added create user functionali, added create habit functionality.
+  * Today: add frequency to habits and add tracking of habits and progress bars. 
 
 ### Stand Up Thu
 * Steven:
@@ -90,15 +113,19 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
   * Today: Finish delete button
 * James:
   * Yesterday: made progress bars and tracking work, styling for sign up page.
-  * Today: styling + testing frontned
+  * Today: styling + testing frontend
 * Hanna:
   * Yesterday: made progress bars and tracking work, refactored to Hooks.
-  * Today: styling + testing frontned
+  * Today: styling + testing frontend
 
-merge hell
 ### Stand Up Fri
 
 * Huseyin:
   * Yesterday: helped fix bugs in deleting and adding habits. Couple frontend tests
   * Today: Clean up readme file and contribute to presentation
+* Hanna:
+  * Yesterday: Added frontend tests & styling.
+  * Today: Readme, presentation, final bug fixes, clean up.
+
+
 

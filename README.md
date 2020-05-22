@@ -87,6 +87,7 @@ Hanna:
 * yesterday: made progress bars and tracking work, refactored to Hooks
 * today: styling + testing frontned
 
+merge hell
 ### Stand Up Fri
 
 

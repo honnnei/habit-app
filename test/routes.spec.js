@@ -8,64 +8,103 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('API Routes', function() {
-    let db, testCollection
-    before(function(done){
-      MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: true })
-      .then(dbAPI => {
-          console.log('Connected to Database')
-          const db = dbAPI.db("HabitTracker")
-          testCollection = db.collection('testing')
-          testCollection.insertOne({"username":"Tester","habit":[{"habitName":"Drink more water","date":"2020-05-18","frequency":8,"tracking":[true]}]})
-
+describe('Server-level API testing suite', function() {
+  let db, testCollection
+  before(function(done){
+    MongoClient.connect("mongodb://localhost/HabitTracker", { useUnifiedTopology: true })
+    .then(dbAPI => {
+        const db = dbAPI.db("HabitTracker")
+        testCollection = db.collection('testing')
     })
     done()
   })
 
-    after(function(done) {
-        db.testCollection.remove()
-        done()
-    }); 
-
-  describe('GET a users habits', function() {
-    it('should return all habits of a user', function(done) {
+  after(function(done) {
+      testCollection.remove();
+      done();
+  });
+  //Add a new user
+  describe("Add a new user HTTP request - type: POST, route: '/habits/add-user'", function() {
+    it('Succeeds', function(done) {
       chai.request(server)
-      .get('/habits/Tester')
+      .post('/habits/add-user')
+      .type('json')
+      .send({
+        "username": "tester"
+      })
       .end(function(err, res) {
-      console.log(res.body)
       res.should.have.status(200);
-      res.should.be.json;
-      res.body.should.be.a('array');
-      res.body.length.should.equal(1);
+      res.should.be.string;
       done();
       });
     });
-  })
-
-/*   describe('POST /habits/add-user', function() {
-    it('should add a show', function(done) {
+  });
+  //Get a single user
+  describe("Get a single user HTTP request - type: GET, route: '/habits/tester'", function() {
+    it('Returns a user document', function(done) {
       chai.request(server)
-      .post('/shows/show')
-      .send({
-        username: 'Tester2'
-      })
+      .get('/habits/tester')
       .end(function(err, res) {
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a('object');
-        res.body.should.have.property('name');
-        res.body.name.should.equal('Family Guy');
-        res.body.should.have.property('channel');
-        res.body.channel.should.equal('Fox');
-        res.body.should.have.property('genre');
-        res.body.genre.should.equal('Comedy');
-        res.body.should.have.property('rating');
-        res.body.rating.should.equal(4);
-        res.body.should.have.property('explicit');
-        res.body.explicit.should.equal(true);
-        done();
+      res.should.have.status(200);
+      res.should.be.json;
+      done();
       });
     });
-  }); */
+  });
+  //Add a new habit to a user
+  describe("Add a new habit to a user HTTP request - type: PUT, route: '/habits/add-habit/tester'", function() {
+    it('Succeeds', function(done) {
+      chai.request(server)
+      .put('/habits/add-habit/tester')
+      .type('json')
+      .send({
+        "habitName": "Weed",
+        "date": "2020-05-18",
+        "frequency": 2,
+        "tracking": [false, false]
+      })
+      .end(function(err, res) {
+      res.should.have.status(200);
+      res.should.be.string;
+      done();
+      });
+    });
+  });
+  //Update a tracking field
+  describe("Update a tracking field HTTP request - type: PUT, route: '/habits/update-habit/tester/0/0/true'", function() {
+    it('Succeeds', function(done) {
+      chai.request(server)
+      .put('/habits/update-habit/tester/0/0/true')
+      .end(function(err, res) {
+      res.should.have.status(200);
+      res.should.be.string;
+      done();
+      });
+    });
+  });
+  //Delete a habit of a user
+  describe("Delete a habit of a user HTTP request - type: PUT, route: '/habits/delete-habit/tester/0'", function() {
+    it('Succeeds', function(done) {
+      chai.request(server)
+      .put('/habits/delete-habit/tester/0')
+      .end(function(err, res) {
+      res.should.have.status(200);
+      res.should.be.string;
+      done();
+      });
+    });
+  });
+  //Delete a user
+  describe("Delete a user HTTP request - type: DELETE, route: '/habits/delete-user/tester'", function() {
+    it('Succeeds', function(done) {
+      chai.request(server)
+      .delete('/habits/delete-user/tester')
+      .end(function(err, res) {
+      res.should.have.status(200);
+      res.should.be.string;
+      done();
+      });
+    });
+  });
 });
 

@@ -65,20 +65,22 @@ onChange={event => this.handleChange(event, index)}
 ## How we would develop our app further
 
 ### Stand Up Tue
-Steven:
-- MongoDB set up on Huseyin's machine
-- all routes work through Postman
-Huseyin:
-- creating basic routes
-* today we need to link them to the frontend 
 
-Hanna:
-* created basic frontend
-* tested frontend
+* Steven:
+MongoDB set up on Huseyin's machine
+all routes work through Postman
 
-James:
-* created basic frontend
-* tested frontend
+* Huseyin:
+created basic routes
+today we need to link them to the frontend 
+
+* Hanna:
+created basic frontend
+tested frontend
+
+* James:
+created basic frontend
+tested frontend
 
 Plan for today:
 - create axios requests
@@ -94,7 +96,7 @@ Steven:
 * spreadshit for the presentation
 * today: testing
 Huseyin:
-* finish off the delte button
+* finish off the delete button
 * tests 
 James:
 * yesterday: yesterday: made progress bars and tracking work, styling for sign up page

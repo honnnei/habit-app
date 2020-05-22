@@ -28,7 +28,6 @@
     "express": "^4.17.1",
     "mocha": "^7.1.2",
     "mongodb": "^3.5.7",
-    "nyc": "^15.0.1",
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {

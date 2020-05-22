@@ -102,8 +102,9 @@ const Tracker = (props) => {
     let maximumTrackNumber = 0;
     let dailyProgress = 0;
     let dailyProgressPercentage = 0;
-
-    if ((userData) && (userData.habit)) {
+    if ((!userData) || (!userData.habit)) {
+      return dailyProgressPercentage;
+    } else if ((userData) && (userData.habit)) {
       for (let i = 0; i < userData.habit.length; i++) {
         maximumTrackNumber += userData.habit[i].tracking.length;
         dailyProgress += userData.habit[i].tracking.filter(Boolean).length;
@@ -187,7 +188,7 @@ const Tracker = (props) => {
           <h3> Hey! {userName}</h3>
           <p>You've set out some Habits to track. Don't forget to mark it when you're done.</p>
           <h5>Here's your daily progress</h5>
-          <ProgressBar now={progressBar()} label = {progressBar()} variant = "warning"></ProgressBar>
+          <ProgressBar now={progressBar()} label = {JSON.stringify(progressBar()) + ' %'} variant = "warning"></ProgressBar>
         </div>
         {/* <h1> {progress}</h1>  */}
         <div className="habit-modal">

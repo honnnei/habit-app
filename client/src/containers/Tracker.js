@@ -39,10 +39,10 @@ const Tracker = (props) => {
           })
           .then(response => response)
           .then(
-            getUserHabits(),
+            toggle()
           )
           .then(
-            toggle()
+            getUserHabits(),
           )
           .catch(error => {
             console.log("this is error", error.message);
@@ -61,7 +61,9 @@ const Tracker = (props) => {
 
   const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setModal(!modal)
+  };
 
   function getUserHabits() {
     console.log("get user habits runs")
@@ -70,6 +72,7 @@ const Tracker = (props) => {
       .then(array => {
         setUserData(array)
       })
+      
   }
   useEffect(() => {
     console.log("userdata: ", userData);
@@ -218,7 +221,7 @@ const Tracker = (props) => {
                 </div>
             </ModalBody>
             <ModalFooter>
-              <Button className="modalBtn" onClick={() => {toggle(); createHabit();}}>Create</Button>
+              <Button className="modalBtn" onClick={() => {toggle(); createHabit(); getUserHabits();}}>Create</Button>
               <Button className="modalBtn2" onClick={toggle} id="cancel" >Cancel</Button>
             </ModalFooter>
           </Modal>

@@ -72,7 +72,7 @@ Plan for today:
 ### Stand Up Wed
 
 ### Stand Up Thu
-
+merge hell
 ### Stand Up Fri
 
 

@@ -126,5 +126,7 @@ Using React Hooks.
 * Hanna:
   * Yesterday: Added frontend tests & styling.
   * Today: Readme, presentation, final bug fixes, clean up.
-
+* James:
+  * Yesterday: Added frontend tests & styling.
+  * Today: Readme, presentation, final bug fixes, clean up.
 

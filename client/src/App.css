@@ -80,6 +80,8 @@ input {
     border-radius: 30px;
     margin-bottom: 30px;
     padding-left: 40px;
+    font-family: monospace;
+    font-size: 0.7 em;
   }
   input[type=text] {
     transition: width 0.4s ease-in-out;

@@ -11,6 +11,12 @@ Hanna, Huseyin, Steven, James
 * I want to be able to delete habits (in case of a typo or I no longer want to track it)
 * I want my total progress and habit specific progress shown to me in an easy to understand way
 
+#### Login Page
+![Login Page](./readme_images/loginpage.png)
+
+#### User Profile
+![User Profile](./readme_pics/habitpage.png)
+
 ---
 
 ### To start (instructions on how to initialise App)
@@ -72,61 +78,4 @@ Using React Hooks.
 * Implement an authentication system, either using Okta or PassportJS
 * Could change the tracking system so that you have 1 checkbox for each habit per day and once complete you check it, if 2 or more days have passed with a certain habit checked then you build a streak. This could be instead of the current tracking system or on top of it.
 * Possibly revert back to a class component for the tracking as it contains a lot of data handling and states, would improve test-ability and possibly functionality.
-
----
-
-## Stand Ups
-
-### Stand Up Tue
-
-* Steven:
-  * Yesterday: MongoDB set up on Huseyin's machine. All routes work through Postman
-  * Today: link to frontend 
-
-* Huseyin:
-  * Yesterday: created basic routes
-  * Today: we need to link them to the frontend
-
-* Hanna:
-  * Yesterday: created basic frontend and tests
-  * Today: Add axios api requests and further tests
-
-* James:
-  * Yesterday: created basic frontend and tests
-  * Today: Add axios api requests and further tests
-
-### Stand Up Wed
-
-* Huseyin:
-  * Yesterday: Added some basic error handling to routes and linked with frontend to test it works for everyone. Set up testing backend environment.
-  * Today: Start working on delete button, createHabit function on frontend and some tests
-* Hanna:
-  * Yesterday: Connected frontend and backend, added create user functionali, added create habit functionality.
-  * Today: add frequency to habits and add tracking of habits and progress bars. 
-
-### Stand Up Thu
-* Steven:
-  * Yesterday: Helped finish the routes. Made suggestions to the delete button. Spreadsheet for the presentation.
-  * Today: Testing backend
-* Huseyin:
-  * Yesterday: Finished createHabit function and started delete button & tests
-  * Today: Finish delete button
-* James:
-  * Yesterday: made progress bars and tracking work, styling for sign up page.
-  * Today: styling + testing frontend
-* Hanna:
-  * Yesterday: made progress bars and tracking work, refactored to Hooks.
-  * Today: styling + testing frontend
-
-### Stand Up Fri
-
-* Huseyin:
-  * Yesterday: helped fix bugs in deleting and adding habits. Couple frontend tests
-  * Today: Clean up readme file and contribute to presentation
-* Hanna:
-  * Yesterday: Added frontend tests & styling.
-  * Today: Readme, presentation, final bug fixes, clean up.
-* James:
-  * Yesterday: Added frontend tests & styling.
-  * Today: Readme, presentation, final bug fixes, clean up.
 

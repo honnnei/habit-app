@@ -15,7 +15,7 @@ Hanna, Huseyin, Steven, James
 ![Login Page](./readme_images/loginpage.png)
 
 #### User Profile
-![User Profile](./readme_images/habitpage.png)
+
 
 ---
 
